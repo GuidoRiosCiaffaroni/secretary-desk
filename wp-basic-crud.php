@@ -1,7 +1,7 @@
 <?php
 /**
-* Plugin Name: WP CRUD test
-* Description: Crud test .
+* Plugin Name: WP SecretaryDesk
+* Description: Wixan SecretaryDesk
 * Version:     2.1.3
 * Plugin URI: https://guidorios.cl/wp-basic-crud-plugin-wordpress/
 * Author:      Guido Rios Ciaffaroni
@@ -19,17 +19,22 @@ require plugin_dir_path( __FILE__ ) . 'includes/metabox-p1.php';
 function wpbc_custom_admin_styles() {
     wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
 	}
+
 add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
 
 
 function wpbc_plugin_load_textdomain() {
 load_plugin_textdomain( 'wpbc', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
 }
+
 add_action( 'plugins_loaded', 'wpbc_plugin_load_textdomain' );
 
 
 global $wpbc_db_version;
 $wpbc_db_version = '1.1.0'; 
+
+global $sistname;
+$sistname = 'secretarydesk'; 
 
 
 function wpbc_install()
@@ -37,7 +42,7 @@ function wpbc_install()
     global $wpdb;
     global $wpbc_db_version;
 
-    $table_name = $wpdb->prefix . 'crud'; 
+    $table_name = $wpdb->prefix . 'secretarydesk'; 
 
 /*
     $sql = "CREATE TABLE " . $table_name . " (
@@ -56,6 +61,7 @@ function wpbc_install()
       PRIMARY KEY  (id)
     );";
 */
+   
     $sql = "CREATE TABLE " . $table_name . " (
       id int(11) NOT NULL AUTO_INCREMENT,
       name VARCHAR (50) NOT NULL,
@@ -113,7 +119,7 @@ function wpbc_install_data()
 {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'crud'; 
+    $table_name = $wpdb->prefix . 'secretarydesk'; 
 
 }
 
@@ -256,7 +262,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     function process_bulk_action()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'crud'; 
+        $table_name = $wpdb->prefix . 'secretarydesk'; 
 
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
@@ -271,7 +277,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     function prepare_items()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'crud'; 
+        $table_name = $wpdb->prefix . 'secretarydesk'; 
 
         $per_page = 10; 
 

@@ -6,16 +6,34 @@ function wpbc_contacts_page_handler()
     $table = new Custom_Table_Example_List_Table();
     $table->prepare_items();
 
+/*
     $message = '';
     if ('delete' === $table->current_action()) {
-        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'wpbc'), count($_REQUEST['id'])) . '</p></div>';
+        $message = '
+            <div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'wpbc'), count($_REQUEST['id']) ) . '</p></div>';
     }
+*/
+
+    $message = '';
+    if ('delete' === $table->current_action()) {
+        $message = '
+            <div class="updated below-h2" id="message"><p> Registro Eliminado</p></div>';
+    }
+
+
+
     ?>
+
+
+
+
 <div class="wrap">
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Contacts', 'wpbc')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts_form');?>"><?php _e('Add new', 'wpbc')?></a>
+    <h2>
+        <?php _e('Registro', 'wpbc')?> 
+        <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts_form');?>">
+            <?php _e('Nuevo Registro', 'wpbc')?> </a>
     </h2>
     <?php echo $message; ?>
 
@@ -105,10 +123,14 @@ function wpbc_contacts_form_page_handler()
     add_meta_box('contacts_form_meta_box', __('Contact data', 'wpbc'), 'wpbc_contacts_form_meta_box_handler', 'contact', 'normal', 'default');
 
     ?>
+
 <div class="wrap">
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Contact', 'wpbc')?> <a class="add-new-h2"
-                                href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts');?>"><?php _e('back to list', 'wpbc')?></a>
+    <h2>
+        <?php _e('Contact', 'wpbc')?> 
+        <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts');?>">
+            <?php _e('back to list', 'wpbc')?>
+            </a>
     </h2>
 
     <?php if (!empty($notice)): ?>
@@ -133,6 +155,7 @@ function wpbc_contacts_form_page_handler()
             </div>
         </div>
     </form>
+
 </div>
 <?php
 }
@@ -145,23 +168,50 @@ function wpbc_contacts_form_meta_box_handler($item)
 	<div class="formdatabc">		
 		
     <form >
-		<div class="form2bc">
-        <p>			
-		    <label for="name"><?php _e('Name:', 'wpbc')?></label>
-		<br>	
-            <input id="name" name="name" type="text" value="<?php echo esc_attr($item['name'])?>"
-                    required>
-		</p><p>
-        <!--
-            <label for="lastname"><?php _e('Last Name:', 'wpbc')?></label>
-		<br>
-		    <input id="lastname" name="lastname" type="text" value="<?php echo esc_attr($item['lastname'])?>"
+<!-- --------------------------------------------------------------------------------------------------------------- -->		
+        <div class="form2bc">
+        <p>         
+            <label for="nint"><?php _e('N° INT:', 'wpbc')?></label>
+            <br>    
+            <input id="nint" name="nint" type="text" value="<?php echo esc_attr($item['nint'])?>" required>
+        </p>
+
+        <p>
+
+
+        
+            <label for="date"><?php _e('Fecha:', 'wpbc')?></label>
+        <br>
+            <input id="date" name="date" type="text" value="<?php echo esc_attr($item['date'])?>"
                     required>
         </p>
-		-->
+        
         </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->    
 
-        <!--
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+<!--
+        <div class="form2bc">
+        <p>
+            <label for="name"><?php _e('Name:', 'wpbc')?></label>
+            <br>	
+            <input id="name" name="name" type="text" value="<?php echo esc_attr($item['name'])?>" required>
+		</p>
+        
+        <p>
+            <label for="lastname"><?php _e('Last Name:', 'wpbc')?></label>
+            <br>
+		    <input id="lastname" name="lastname" type="text" value="<?php echo esc_attr($item['lastname'])?>" required>
+        </p>
+        </div>
+-->
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+        
+
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+<!--
 		<div class="form2bc">
 			<p>
             <label for="email"><?php _e('E-Mail:', 'wpbc')?></label> 
@@ -174,9 +224,11 @@ function wpbc_contacts_form_meta_box_handler($item)
 			<input id="phone" name="phone" type="tel" value="<?php echo esc_attr($item['phone'])?>">
 		</p>
 		</div>
-        -->
+-->        
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
 
-        <!--
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
+<!--
 		<div class="form2bc">
 			<p>
             <label for="company"><?php _e('Company:', 'wpbc')?></label> 
@@ -188,9 +240,11 @@ function wpbc_contacts_form_meta_box_handler($item)
 			<input id="web" name="web" type="text" value="<?php echo esc_attr($item['web'])?>">
 		</p>
 		</div>
-        -->
+-->        
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
 
-        <!--
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
+<!--
 		<div class="form3bc">
 		<p>
             <label for="email"><?php _e('E-Mail:', 'wpbc')?></label> 
@@ -206,9 +260,11 @@ function wpbc_contacts_form_meta_box_handler($item)
 			<input id="job" name="job" type="text" value="<?php echo esc_attr($item['job'])?>">
 		</p>		
 		</div>
-        -->
+-->        
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
 
-        <!--
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
+<!--
 		<div>		
 			<p>
 		    <label for="address"><?php _e('Address:', 'wpbc')?></label> 
@@ -220,9 +276,15 @@ function wpbc_contacts_form_meta_box_handler($item)
             <textarea id="notesbc" name="notes" cols="100" rows="3" maxlength="240"><?php echo esc_attr($item['notes'])?></textarea>
 		</p>
 		</div>
-        -->
+-->        
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
 
 		</form>
+
+
+
+
+
 		</div>
 </tbody>
 <?php
