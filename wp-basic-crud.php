@@ -42,7 +42,7 @@ function wpbc_install()
     global $wpdb;
     global $wpbc_db_version;
 
-    $table_name = $wpdb->prefix . 'secretarydesk'; 
+    $table_name = $wpdb->prefix . $sistname; 
 
 /*
     $sql = "CREATE TABLE " . $table_name . " (
@@ -119,7 +119,7 @@ function wpbc_install_data()
 {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'secretarydesk'; 
+    $table_name = $wpdb->prefix . $sistname; 
 
 }
 
@@ -262,7 +262,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     function process_bulk_action()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'secretarydesk'; 
+        $table_name = $wpdb->prefix . $sistname; 
 
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
@@ -277,7 +277,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     function prepare_items()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'secretarydesk'; 
+        $table_name = $wpdb->prefix . $sistname; 
 
         $per_page = 10; 
 
