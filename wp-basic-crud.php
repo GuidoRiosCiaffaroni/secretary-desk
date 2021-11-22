@@ -44,6 +44,7 @@ function wpbc_install()
 
     $table_name = $wpdb->prefix . 'secretarydesk'; 
 
+
 /*
     $sql = "CREATE TABLE " . $table_name . " (
       id int(11) NOT NULL AUTO_INCREMENT,
@@ -64,7 +65,22 @@ function wpbc_install()
    
     $sql = "CREATE TABLE " . $table_name . " (
       id int(11) NOT NULL AUTO_INCREMENT,
-      name VARCHAR (50) NOT NULL,
+        nint VARCHAR (50) NOT NULL, 
+        date VARCHAR (100) NOT NULL,
+        depto_unid VARCHAR (100) NOT NULL,
+        nombres VARCHAR (100) NOT NULL,
+        apellido_paterno VARCHAR (100) NOT NULL,
+        apellido_materno VARCHAR (100) NOT NULL,
+        rut VARCHAR (100) NOT NULL,
+        email VARCHAR (100) NOT NULL,
+        perm_admin VARCHAR (100) NOT NULL,
+        fdo_legal VARCHAR (100) NOT NULL,
+        perm_parent VARCHAR (100) NOT NULL,
+        dias VARCHAR (100) NOT NULL,
+        desde VARCHAR (100) NOT NULL,
+        hasta VARCHAR (100) NOT NULL,
+        nombre_pdf VARCHAR (100) NOT NULL,
+        dir_archivo_externo VARCHAR (100) NOT NULL,
       PRIMARY KEY  (id)
     );";
 
@@ -99,8 +115,22 @@ function wpbc_install()
     $installed_ver = get_option('wpbc_db_version');
     if ($installed_ver != $wpbc_db_version) {
         $sql = "CREATE TABLE " . $table_name . " (
-          id int(11) NOT NULL AUTO_INCREMENT,
-          name VARCHAR (50) NOT NULL,
+            id int(11) NOT NULL AUTO_INCREMENT,
+            nint VARCHAR (50) NOT NULL,
+            date VARCHAR (100) NOT NULL,
+            depto_unid VARCHAR (100) NOT NULL,
+            nombres VARCHAR (100) NOT NULL,
+            apellido_paterno VARCHAR (100) NOT NULL,
+            apillido_materno VARCHAR (100) NOT NULL,
+            rut VARCHAR (100) NOT NULL,
+            perm_admin VARCHAR (100) NOT NULL,
+            fdo_legal VARCHAR (100) NOT NULL,
+            perm_parent VARCHAR (100) NOT NULL,
+            dias VARCHAR (100) NOT NULL,
+            desde VARCHAR (100) NOT NULL,
+            hasta VARCHAR (100) NOT NULL,
+            nombre_pdf VARCHAR (100) NOT NULL,
+            dir_archivo_externo VARCHAR (100) NOT NULL,
           PRIMARY KEY  (id)
         );";        
 
@@ -178,7 +208,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         );
 
         return sprintf('%s %s',
-            $item['name'],
+            $item['id'],
             $this->row_actions($actions)
         );
     }
@@ -214,7 +244,9 @@ class Custom_Table_Example_List_Table extends WP_List_Table
 
         $columns = array(
             'cb' => '<input type="checkbox" />', 
-            'name'      => __('Name', 'wpbc'),
+            'nint'      => __('N° INT', 'wpbc'),
+            'date'      => __('Fecha', 'wpbc'),
+
         );
         return $columns;
 
@@ -244,7 +276,8 @@ class Custom_Table_Example_List_Table extends WP_List_Table
    function get_sortable_columns()
     {
         $sortable_columns = array(
-            'name'      => array('name', true),
+            'nint'      => array('N° INT', true),
+            'date'      => array('Fecha', true),
         );
         return $sortable_columns;
     }
@@ -298,12 +331,15 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'lastname';
         */
 
-        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'name';
+
+
+        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
 
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
 
 
         $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
+
 
 
         $this->set_pagination_args(array(
@@ -317,8 +353,8 @@ class Custom_Table_Example_List_Table extends WP_List_Table
 function wpbc_admin_menu()
 {
     add_menu_page(
-        __('Contacts', 'wpbc'), 
-        __('Contacts', 'wpbc'), 
+        __('Registro', 'wpbc'), 
+        __('Registro', 'wpbc'), 
         'activate_plugins', 
         'contacts', 
         'wpbc_contacts_page_handler'
@@ -326,18 +362,18 @@ function wpbc_admin_menu()
 
 
     add_submenu_page(
-        'contacts', 
-        __('Contacts', 'wpbc'), 
-        __('Contacts', 'wpbc'), 
+        'Registro', 
+        __('Registro', 'wpbc'), 
+        __('Registro', 'wpbc'), 
         'activate_plugins', 
         'contacts', 
         'wpbc_contacts_page_handler'
     );
    
     add_submenu_page(
-        'contacts', 
-        __('Add new', 'wpbc'), 
-        __('Add new', 'wpbc'), 
+        'Registro', 
+        __('Nuevo', 'wpbc'), 
+        __('Nuevo', 'wpbc'), 
         'activate_plugins', 
         'contacts_form', 
         'wpbc_contacts_form_page_handler'
@@ -355,9 +391,10 @@ function wpbc_validate_contact($item)
 {
     $messages = array();
 
-    if (empty($item['name'])) $messages[] = __('Name is required', 'wpbc');
+/*
+    if (empty($item['nint'])) $messages[] = __('Name is required', 'wpbc');
 
-    /*
+
     if (empty($item['lastname'])) $messages[] = __('Last Name is required', 'wpbc');
     if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'wpbc');
     if(!empty($item['phone']) && !absint(intval($item['phone'])))  $messages[] = __('Phone can not be less than zero');

@@ -50,7 +50,7 @@ function wpbc_contacts_page_handler()
 function wpbc_contacts_form_page_handler()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'crud'; 
+    $table_name = $wpdb->prefix . 'secretarydesk'; 
 
     $message = '';
     $notice = '';
@@ -74,7 +74,8 @@ function wpbc_contacts_form_page_handler()
 
     $default = array(
         'id' => 0,
-        'name'      => '',
+        'nint'      => '',
+        'date'      => '',
     );
 
 
@@ -90,7 +91,7 @@ function wpbc_contacts_form_page_handler()
                 $result = $wpdb->insert($table_name, $item);
                 $item['id'] = $wpdb->insert_id;
                 if ($result) {
-                    $message = __('Item was successfully saved', 'wpbc');
+                    $message = __('Es registro fue ingresado satisfactoriamente', 'wpbc');
                 } else {
                     $notice = __('There was an error while saving item', 'wpbc');
                 }
@@ -120,7 +121,7 @@ function wpbc_contacts_form_page_handler()
     }
 
     
-    add_meta_box('contacts_form_meta_box', __('Contact data', 'wpbc'), 'wpbc_contacts_form_meta_box_handler', 'contact', 'normal', 'default');
+    add_meta_box('contacts_form_meta_box', __('Registro Data', 'wpbc'), 'wpbc_contacts_form_meta_box_handler', 'contact', 'normal', 'default');
 
     ?>
 
@@ -129,7 +130,7 @@ function wpbc_contacts_form_page_handler()
     <h2>
         <?php _e('Contact', 'wpbc')?> 
         <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts');?>">
-            <?php _e('back to list', 'wpbc')?>
+            <?php _e('Regresar a la lista', 'wpbc')?>
             </a>
     </h2>
 
@@ -150,7 +151,7 @@ function wpbc_contacts_form_page_handler()
                 <div id="post-body-content">
                     
                     <?php do_meta_boxes('contact', 'normal', $item); ?>
-                    <input type="submit" value="<?php _e('Save', 'wpbc')?>" id="submit" class="button-primary" name="submit">
+                    <input type="submit" value="<?php _e('Ingresar', 'wpbc')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
         </div>
@@ -190,42 +191,161 @@ function wpbc_contacts_form_meta_box_handler($item)
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
 
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
-<!--
+
+        <div>   
+        <p>
+            <label for="depto_unid"><?php _e('Departamento / Unidad :', 'wpbc')?></label>
+            <br>	
+            <input id="depto_unid" name="depto_unid" type="text" size="106" value="<?php echo esc_attr($item['depto_unid'])?>" required>
+		</p>
+        
+        </div>
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+        
+
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+		<div class="form3bc">
+		<p>
+            <label for="nombres"><?php _e('Nombre:', 'wpbc')?></label> 
+		    <br>	
+            <input id="nombres" name="nombres" type="text" value="<?php echo esc_attr($item['nombres'])?>" required>
+        </p>
+        <p>	  
+            <label for="apellido_paterno"><?php _e('Apellido Paterno:', 'wpbc')?></label> 
+		    <br>
+			<input id="apellido_paterno" name="apellido_paterno" type="text" value="<?php echo esc_attr($item['apellido_paterno'])?>">
+		</p>
+
+        <p>   
+            <label for="apellido_materno"><?php _e('Apellido Materno:', 'wpbc')?></label> 
+            <br>
+            <input id="apellido_materno" name="apellido_materno" type="text" value="<?php echo esc_attr($item['apellido_materno'])?>">
+        </p>
+
+		</div>
+        
+<!-- --------------------------------------------------------------------------------------------------------------- -->         
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
         <div class="form2bc">
         <p>
-            <label for="name"><?php _e('Name:', 'wpbc')?></label>
-            <br>	
-            <input id="name" name="name" type="text" value="<?php echo esc_attr($item['name'])?>" required>
-		</p>
-        
-        <p>
-            <label for="lastname"><?php _e('Last Name:', 'wpbc')?></label>
-            <br>
-		    <input id="lastname" name="lastname" type="text" value="<?php echo esc_attr($item['lastname'])?>" required>
+            <label for="rut"><?php _e('Rut:', 'wpbc')?></label> 
+            <br>    
+            <input id="rut" name="rut" type="text" value="<?php echo esc_attr($item['rut'])?>" required>
         </p>
+        <p>   
+            <label for="email"><?php _e('E-mail:', 'wpbc')?></label> 
+            <br>
+            <input id="email" name="email" type="text" value="<?php echo esc_attr($item['email'])?>">
+        </p>
+
         </div>
--->
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
         
-
+<!-- --------------------------------------------------------------------------------------------------------------- -->  
 
 
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
-<!--
-		<div class="form2bc">
-			<p>
-            <label for="email"><?php _e('E-Mail:', 'wpbc')?></label> 
-		<br>	
-            <input id="email" name="email" type="email" value="<?php echo esc_attr($item['email'])?>"
-                   required>
-        </p><p>	  
-            <label for="phone"><?php _e('Phone:', 'wpbc')?></label> 
-		<br>
-			<input id="phone" name="phone" type="tel" value="<?php echo esc_attr($item['phone'])?>">
-		</p>
-		</div>
--->        
+
+        <div>   
+        <p>
+            <label for="perm_admin"><?php _e('Permiso administrativo :', 'wpbc')?></label>
+            <br>    
+            <input id="perm_admin" name="perm_admin" type="text" size="106" value="<?php echo esc_attr($item['perm_admin'])?>" required>
+        </p>
+        
+        </div>
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+      
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+        <div>   
+        <p>
+            <label for="fdo_legal"><?php _e('Feriado legal :', 'wpbc')?></label>
+            <br>    
+            <input id="fdo_legal" name="fdo_legal" type="text" size="106" value="<?php echo esc_attr($item['fdo_legal'])?>" required>
+        </p>
+        
+        </div>
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+      
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+        <div>   
+        <p>
+            <label for="perm_parent"><?php _e('Permiso Parental :', 'wpbc')?></label>
+            <br>    
+            <input id="perm_parent" name="perm_parent" type="text" size="106" value="<?php echo esc_attr($item['perm_parent'])?>" required>
+        </p>
+        
+        </div>
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+      
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+        <div class="form3bc">
+        <p>
+            <label for="dias"><?php _e('Dias:', 'wpbc')?></label> 
+            <br>    
+            <input id="dias" name="dias" type="text" value="<?php echo esc_attr($item['dias'])?>" required>
+        </p>
+        <p>   
+            <label for="desde"><?php _e('Desde:', 'wpbc')?></label> 
+            <br>
+            <input id="desde" name="desde" type="text" value="<?php echo esc_attr($item['desde'])?>">
+        </p>
+
+        <p>   
+            <label for="hasta"><?php _e('Hasta:', 'wpbc')?></label> 
+            <br>
+            <input id="hasta" name="hasta" type="text" value="<?php echo esc_attr($item['hasta'])?>">
+        </p>
+
+        </div>
+        
 <!-- --------------------------------------------------------------------------------------------------------------- -->         
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+        <div>   
+        <p>
+            <label for="nombre_pdf"><?php _e('Nombre PDF :', 'wpbc')?></label>
+            <br>    
+            <input id="nombre_pdf" name="nombre_pdf" type="text" size="106" value="<?php echo esc_attr($item['nombre_pdf'])?>" required>
+        </p>
+        
+        </div>
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+      
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+        <div>   
+        <p>
+            <label for="dir_archivo_externo"><?php _e('Direccion archivo PDF :', 'wpbc')?></label>
+            <br>    
+            <input id="dir_archivo_externo" name="dir_archivo_externo" type="text" size="106" value="<?php echo esc_attr($item['dir_archivo_externo'])?>" required>
+        </p>
+        
+        </div>
+
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+      
+
+
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->         
 <!--
