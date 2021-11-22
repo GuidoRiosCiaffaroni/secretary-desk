@@ -1,4 +1,5 @@
 <?php
+
 function wpbc_contacts_page_handler()
 {
     global $wpdb;
@@ -6,13 +7,6 @@ function wpbc_contacts_page_handler()
     $table = new Custom_Table_Example_List_Table();
     $table->prepare_items();
 
-/*
-    $message = '';
-    if ('delete' === $table->current_action()) {
-        $message = '
-            <div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'wpbc'), count($_REQUEST['id']) ) . '</p></div>';
-    }
-*/
 
     $message = '';
     if ('delete' === $table->current_action()) {
@@ -26,15 +20,16 @@ function wpbc_contacts_page_handler()
 
 
 
-
+<!-- Inicio Pagina Pricipal -->
 <div class="wrap">
-
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2>
         <?php _e('Registro', 'wpbc')?> 
-        <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts_form');?>">
-            <?php _e('Nuevo Registro', 'wpbc')?> </a>
+        <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=registro_form');?>">
+            <?php _e('Nuevo Registro', 'wpbc')?> 
+        </a>
     </h2>
+    
     <?php echo $message; ?>
 
     <form id="contacts-table" method="POST">
@@ -43,6 +38,8 @@ function wpbc_contacts_page_handler()
     </form>
 
 </div>
+
+
 <?php
 }
 
@@ -55,27 +52,27 @@ function wpbc_contacts_form_page_handler()
     $message = '';
     $notice = '';
 
-/*
-    $default = array(
-        'id' => 0,
-        'name'      => '',
-        'lastname'  => '',
-        'email'     => '',
-        'phone'     => null,
-        'company'   => '',
-        'web'       => '',  
-        'two_email' => '',   
-        'two_phone' => '',
-        'job'       => '',        
-        'address'   => '',
-        'notes'     => '',
-    );
-*/
+
 
     $default = array(
-        'id' => 0,
-        'nint'      => '',
-        'date'      => '',
+        'id'                    => 0,
+        'nint'                  => '',
+        'date'                  => '',
+        'depto_unid'            => '',
+        'nombres'               => '',
+        'apellido_paterno'      => '',
+        'apellido_materno'      => '',
+        'rut'                   => '',
+        'email'                 => '',
+        'perm_admin'            => '',
+        'fdo_legal'             => '',
+        'perm_parent'           => '',
+        'dias'                  => '',
+        'desde'                 => '',
+        'hasta'                 => '',
+        'nombre_pdf'            => '',
+        'dir_archivo_externo'   => '',
+
     );
 
 
@@ -121,15 +118,22 @@ function wpbc_contacts_form_page_handler()
     }
 
     
-    add_meta_box('contacts_form_meta_box', __('Registro Data', 'wpbc'), 'wpbc_contacts_form_meta_box_handler', 'contact', 'normal', 'default');
+    add_meta_box(
+        'contacts_form_meta_box', 
+        __('Registro Data', 'wpbc'), 
+        'wpbc_contacts_form_meta_box_handler', 
+        'contact', 
+        'normal', 
+        'default'
+    );
 
     ?>
 
 <div class="wrap">
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2>
-        <?php _e('Contact', 'wpbc')?> 
-        <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=contacts');?>">
+        <?php _e('Registro', 'wpbc')?> 
+        <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=registros');?>">
             <?php _e('Regresar a la lista', 'wpbc')?>
             </a>
     </h2>

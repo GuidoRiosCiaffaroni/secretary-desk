@@ -45,23 +45,6 @@ function wpbc_install()
     $table_name = $wpdb->prefix . 'secretarydesk'; 
 
 
-/*
-    $sql = "CREATE TABLE " . $table_name . " (
-      id int(11) NOT NULL AUTO_INCREMENT,
-      name VARCHAR (50) NOT NULL,
-      lastname VARCHAR (100) NOT NULL,
-      email VARCHAR(100) NOT NULL,
-      phone VARCHAR(15) NULL,
-      company VARCHAR(100) NULL,
-      web VARCHAR(100) NULL,  
-      two_email VARCHAR(100) NULL,   
-      two_phone VARCHAR(15) NULL,  
-      job VARCHAR(100) NULL,
-      address VARCHAR (250) NULL,
-      notes VARCHAR (250) NULL,
-      PRIMARY KEY  (id)
-    );";
-*/
    
     $sql = "CREATE TABLE " . $table_name . " (
       id int(11) NOT NULL AUTO_INCREMENT,
@@ -92,25 +75,7 @@ function wpbc_install()
 
     add_option('wpbc_db_version', $wpbc_db_version);
 
-    /*
-    $installed_ver = get_option('wpbc_db_version');
-    if ($installed_ver != $wpbc_db_version) {
-        $sql = "CREATE TABLE " . $table_name . " (
-          id int(11) NOT NULL AUTO_INCREMENT,
-          name VARCHAR (50) NOT NULL,
-          lastname VARCHAR (100) NOT NULL,
-          email VARCHAR(100) NOT NULL,
-          phone VARCHAR(15) NULL,
-          company VARCHAR(100) NULL,
-          web VARCHAR(100) NULL,  
-          two_email VARCHAR(100) NULL,   
-          two_phone VARCHAR(15) NULL,  
-          job VARCHAR(100) NULL,          
-          address VARCHAR (250) NULL,
-          notes VARCHAR (250) NULL,
-          PRIMARY KEY  (id)
-        );";
-    */
+
 
     $installed_ver = get_option('wpbc_db_version');
     if ($installed_ver != $wpbc_db_version) {
@@ -181,8 +146,8 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         global $status, $page;
 
         parent::__construct(array(
-            'singular' => 'contact',
-            'plural'   => 'contacts',
+            'singular' => 'registro',
+            'plural'   => 'registros',
         ));
     }
 
@@ -192,19 +157,13 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         return $item[$column_name];
     }
 
-
-    function column_phone($item)
-    {
-        return '<em>' . $item['phone'] . '</em>';
-    }
-
-
-    function column_name($item)
+    function column_id($item)
     {
 
         $actions = array(
-            'edit' => sprintf('<a href="?page=contacts_form&id=%s">%s</a>', $item['id'], __('Edit', 'wpbc')),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'wpbc')),
+            'edit' => sprintf('<a href="?page=contacts_form&id=%s">%s</a>', $item['id'], __('Editar', 'wpbc')),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Borrar', 'wpbc')),
+
         );
 
         return sprintf('%s %s',
@@ -222,72 +181,68 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         );
     }
 
+    function column_Detalle($item)
+    {
+
+
+        return sprintf('<a href="?page=%s&action=detail&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Detalle', 'wpbc'));
+    }
+
+
+/*inicio Muestra columnas */
     function get_columns()
     {
-
-        /*
         $columns = array(
-            'cb' => '<input type="checkbox" />', 
-            'name'      => __('Name', 'wpbc'),
-            'lastname'  => __('Last Name', 'wpbc'),
-            'email'     => __('E-Mail', 'wpbc'),
-            'phone'     => __('Phone', 'wpbc'),
-            'company'   => __('Company', 'wpbc'),
-            'web'       => __('Web', 'wpbc'),  
-            'two_email' => __('Email', 'wpbc'),   
-            'two_phone' => __('Phone', 'wpbc'),  
-            'job'       => __('Job Title', 'wpbc'),
-        );
-        return $columns;
-        */
-
-
-        $columns = array(
-            'cb' => '<input type="checkbox" />', 
-            'nint'      => __('N° INT', 'wpbc'),
-            'date'      => __('Fecha', 'wpbc'),
+            'cb'                    => '<input type="checkbox" />',
+            'id'                    => __('', 'wpbc'),
+            'nint'                  => __('N° INT', 'wpbc'),
+            'date'                  => __('Fecha', 'wpbc'),
+            'depto_unid'            => __('Dep/Uni', 'wpbc'),
+            'nombres'               => __('Nombre', 'wpbc'),
+            'apellido_paterno'      => __('A Paterno', 'wpbc'),
+            'apellido_materno'      => __('A Materno', 'wpbc'),
+            'rut'                   => __('Rut', 'wpbc'),
+            'Detalle'   => '<lavel>Detalle </label>',
 
         );
         return $columns;
 
     }
+/*Fin Muestra Columnas*/
 
 
 
-/*
-    function get_sortable_columns()
-    {
-        $sortable_columns = array(
-            'name'      => array('name', true),
-            'lastname'  => array('lastname', true),
-            'email'     => array('email', true),
-            'phone'     => array('phone', true),
-            'company'   => array('company', true),
-            'web'       => array('web', true),  
-            'two_email' => array('two_email', true),   
-            'two_phone' => array('two_phone', true),  
-            'job'       => array('job', true),
-        );
-        return $sortable_columns;
-    }
-    */
-
-
+/* Inicio Ordenar Columnas*/
    function get_sortable_columns()
     {
         $sortable_columns = array(
-            'nint'      => array('N° INT', true),
-            'date'      => array('Fecha', true),
+            'nint'                  => array('N° INT', true),
+            'date'                  => array('Fecha', true),
+            'depto_unid'            => array('Departamento/Unidad', true),
+            'nombres'               => array('Nombre', true),
+            'apellido_paterno'      => array('Apellido Paterno', true),
+            'apellido_materno'      => array('Apellido Materno', true),
+            'rut'                   => array('Rut', true),
+            'email'                 => array('E-Mail', true),
+            'perm_admin'            => array('Permiso Administrativo', true),
+            'fdo_legal'             => array('Feriado Legal', true),
+            'perm_parent'           => array('Permiso Parental', true),
+            'dias'                  => array('Dias', true),
+            'desde'                 => array('Desde', true),
+            'hasta'                 => array('Hasta', true),
+            'nombre_pdf'            => array('Nombre PDF', true),
+            'dir_archivo_externo'   => array('Archivo', true),
+
         );
         return $sortable_columns;
     }
-
+/*Fin Ordenar Columnas*/
 
 
     function get_bulk_actions()
     {
         $actions = array(
-            'delete' => 'Delete'
+            'delete' => 'Borrar'
         );
         return $actions;
     }
@@ -327,11 +282,6 @@ class Custom_Table_Example_List_Table extends WP_List_Table
 
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
         
-        /*
-        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'lastname';
-        */
-
-
 
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
 
@@ -356,7 +306,7 @@ function wpbc_admin_menu()
         __('Registro', 'wpbc'), 
         __('Registro', 'wpbc'), 
         'activate_plugins', 
-        'contacts', 
+        'registros', 
         'wpbc_contacts_page_handler'
     );
 
@@ -366,7 +316,7 @@ function wpbc_admin_menu()
         __('Registro', 'wpbc'), 
         __('Registro', 'wpbc'), 
         'activate_plugins', 
-        'contacts', 
+        'registros', 
         'wpbc_contacts_page_handler'
     );
    
@@ -375,7 +325,7 @@ function wpbc_admin_menu()
         __('Nuevo', 'wpbc'), 
         __('Nuevo', 'wpbc'), 
         'activate_plugins', 
-        'contacts_form', 
+        'registro_form', 
         'wpbc_contacts_form_page_handler'
     );
 
