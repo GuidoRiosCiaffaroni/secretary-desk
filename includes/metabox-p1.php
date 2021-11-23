@@ -13,8 +13,6 @@ function wpbc_contacts_page_handler()
         $message = '<div class="updated below-h2" id="message"><p> Registro Eliminado</p></div>';
     }
 
-
-
     ?>
 
 
@@ -73,8 +71,6 @@ function wpbc_contacts_form_page_handler()
         'dir_archivo_externo'   => '',
 
     );
-
-
 
 
     if ( isset($_REQUEST['nonce']) && wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) {

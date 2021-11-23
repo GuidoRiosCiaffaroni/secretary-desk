@@ -47,7 +47,7 @@ function wpbc_install()
 
    
     $sql = "CREATE TABLE " . $table_name . " (
-      id int(11) NOT NULL AUTO_INCREMENT,
+        id int(11) NOT NULL AUTO_INCREMENT,
         nint VARCHAR (50) NOT NULL, 
         date VARCHAR (100) NOT NULL,
         depto_unid VARCHAR (100) NOT NULL,
@@ -64,7 +64,11 @@ function wpbc_install()
         hasta VARCHAR (100) NOT NULL,
         nombre_pdf VARCHAR (100) NOT NULL,
         dir_archivo_externo VARCHAR (100) NOT NULL,
-      PRIMARY KEY  (id)
+        user_id int(11) NOT NULL,
+        user_name VARCHAR (100) NOT NULL,
+        status_id int(11) NOT NULL,
+        key_id VARCHAR (50) NOT NULL,
+        PRIMARY KEY  (id)
     );";
 
 
@@ -81,13 +85,14 @@ function wpbc_install()
     if ($installed_ver != $wpbc_db_version) {
         $sql = "CREATE TABLE " . $table_name . " (
             id int(11) NOT NULL AUTO_INCREMENT,
-            nint VARCHAR (50) NOT NULL,
+            nint VARCHAR (50) NOT NULL, 
             date VARCHAR (100) NOT NULL,
             depto_unid VARCHAR (100) NOT NULL,
             nombres VARCHAR (100) NOT NULL,
             apellido_paterno VARCHAR (100) NOT NULL,
-            apillido_materno VARCHAR (100) NOT NULL,
+            apellido_materno VARCHAR (100) NOT NULL,
             rut VARCHAR (100) NOT NULL,
+            email VARCHAR (100) NOT NULL,
             perm_admin VARCHAR (100) NOT NULL,
             fdo_legal VARCHAR (100) NOT NULL,
             perm_parent VARCHAR (100) NOT NULL,
@@ -96,7 +101,11 @@ function wpbc_install()
             hasta VARCHAR (100) NOT NULL,
             nombre_pdf VARCHAR (100) NOT NULL,
             dir_archivo_externo VARCHAR (100) NOT NULL,
-          PRIMARY KEY  (id)
+            user_id int(11) NOT NULL,
+            user_name VARCHAR (100) NOT NULL,
+            status_id int(11) NOT NULL,
+            key_id VARCHAR (50) NOT NULL,
+            PRIMARY KEY  (id)
         );";        
 
 
