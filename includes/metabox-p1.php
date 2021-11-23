@@ -119,6 +119,10 @@ function wpbc_contacts_form_page_handler()
                     $notice = __('There was an error while updating item', 'wpbc');
                 }
                 */
+
+                
+
+
             }
         } 
         else 
@@ -237,6 +241,11 @@ function wpbc_contacts_form_meta_box_handler($item)
 
 
 
+ 
+    //echo wp_generate_password();                 // @iU!ZnjUWZsg
+    //echo wp_generate_password( 15, false );      // YdD6j750MeiOkPa
+    //echo wp_generate_password( 15, true, true ); // .WfvgX6`V^Vg:,_
+
     ?>
 <tbody >
 		
@@ -251,7 +260,7 @@ function wpbc_contacts_form_meta_box_handler($item)
             <br>
             <label for="user_name"><?php echo get_current_user(); ?></label>
             <br>
-            <label for="key_id"><?php echo time(); ?></label>
+            <label for="key_id"><?php echo time().'_'.wp_generate_password( 3, false ); ?></label>
             <br>
             <label for="status_id"><?php echo '1' ?></label>
 
@@ -259,7 +268,7 @@ function wpbc_contacts_form_meta_box_handler($item)
             <br>
             <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
             <input id="user_name" name="user_name" type="hidden" value="<?php echo get_current_user(); ?>">
-            <input id="key_id" name="key_id" type="hidden" value="<?php echo time(); ?>">
+            <input id="key_id" name="key_id" type="hidden" value="<?php echo time().'_'.wp_generate_password( 3, false ); ?>">
             <input id="status_id" name="status_id" type="hidden" value="1">
             
             <!-- <input id="nint" name="nint" type="text" value="<?php echo esc_attr($item['nint'])?>" required> -->
