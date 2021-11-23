@@ -139,31 +139,34 @@ if (!class_exists('WP_List_Table')) {
 }
 
 
+/* Inicio clase tabla*/
 class Custom_Table_Example_List_Table extends WP_List_Table
- { 
+{
+    /* Inicio Funcion constructor*/ 
     function __construct()
-    {
-        global $status, $page;
+        {
+            global $status, $page;
 
-        parent::__construct(array(
-            'singular' => 'registro',
-            'plural'   => 'registros',
-        ));
-    }
+            parent::__construct(array(
+                'singular' => 'registro',
+                'plural'   => 'registros',
+            ));
+        }
+    /*Fin inicio construcctor*/
 
-
+    /*Inicio datos columna predeterminado*/
     function column_default($item, $column_name)
-    {
-        return $item[$column_name];
-    }
+        {
+            return $item[$column_name];
+        }
+    /*Fin datos columna predeterminado*/
 
+    /*Inicio controles editar y borrar en la columna id*/
     function column_id($item)
     {
-
         $actions = array(
-            'edit' => sprintf('<a href="?page=contacts_form&id=%s">%s</a>', $item['id'], __('Editar', 'wpbc')),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Borrar', 'wpbc')),
-
+            'edit' => sprintf('<a href="?page=registro_form&id=%s">%s</a>', $item['id'], __('Editar', 'wpbc')),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Borrar', 'wpbc'))
         );
 
         return sprintf('%s %s',
@@ -171,8 +174,9 @@ class Custom_Table_Example_List_Table extends WP_List_Table
             $this->row_actions($actions)
         );
     }
+    /*Fin controles editar y borrar en la columna id*/
 
-
+    /*Inicio input en la columan cb*/
     function column_cb($item)
     {
         return sprintf(
@@ -180,16 +184,19 @@ class Custom_Table_Example_List_Table extends WP_List_Table
             $item['id']
         );
     }
+    /*Fin input en la columan cb*/
 
+    /*Inicio controles en la columna detalle*/
     function column_Detalle($item)
     {
 
 
         return sprintf('<a href="?page=%s&action=detail&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Detalle', 'wpbc'));
     }
+    /*Fin controles en la columna detalle*/
 
 
-/*inicio Muestra columnas */
+    /*Inicio Muestra columnas */
     function get_columns()
     {
         $columns = array(
@@ -208,11 +215,11 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         return $columns;
 
     }
-/*Fin Muestra Columnas*/
+    /*Fin Muestra Columnas*/
 
 
 
-/* Inicio Ordenar Columnas*/
+    /* Inicio Ordenar Columnas*/
    function get_sortable_columns()
     {
         $sortable_columns = array(
@@ -236,7 +243,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         );
         return $sortable_columns;
     }
-/*Fin Ordenar Columnas*/
+    /*Fin Ordenar Columnas*/
 
 
     function get_bulk_actions()
@@ -261,6 +268,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
             }
         }
     }
+
 
     function prepare_items()
     {
