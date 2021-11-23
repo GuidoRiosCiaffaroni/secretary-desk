@@ -70,58 +70,77 @@ function wpbc_contacts_form_page_handler()
         'hasta'                 => '',
         'nombre_pdf'            => '',
         'dir_archivo_externo'   => '',
+        'user_id'               => '',
+        'user_name'             => '',
+        'status_id'             => '',
+        'key_id'                => '',
+
+
     );
     /*Fin Array Informacion para manejar CRUD */
 
-    if ( isset($_REQUEST['nonce']) && wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) {
-        
-        $item = shortcode_atts($default, $_REQUEST);     
 
+    if ( isset($_REQUEST['nonce']) && wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) 
+    {    
+        $item = shortcode_atts($default, $_REQUEST);     
         $item_valid = wpbc_validate_contact($item);
         
+        if ($item_valid === true) 
+        {
 
-        if ($item_valid === true) {
-
-            if ($item['id'] == 0) {
-                /*Inicio ingreso de Informacion en la tabla*/
+            if ($item['id'] == 0) 
+            {
+                /* Objeto ingreso de informacion en la tabla*/
                 $result = $wpdb->insert($table_name, $item);
                 $item['id'] = $wpdb->insert_id;
                 
-                if ($result) {
-
+                if ($result) 
+                {
                     $message = __('Es registro fue ingresado satisfactoriamente', 'wpbc');
-
-                } else {
-
+                } 
+                else 
+                {
                     $notice = __('There was an error while saving item', 'wpbc');
                 }
-                /*Fin ingreso de Informacion en la tabla*/
 
-            } else {
+            } 
+
+            else 
+            {
+                /* Objeto actualizacion de informacion en la tabla*/
                 $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
-                if ($result) {
+                if ($result) 
+                {
                     $message = __('Item was successfully updated', 'wpbc');
-                } else {
+                } 
+                else 
+                {
                     $notice = __('There was an error while updating item', 'wpbc');
                 }
             }
-        } else {
+        } 
+        else 
+        {
             
             $notice = $item_valid;
         }
     }
-
-    else {
-        
+    else 
+    {
         $item = $default;
-        if (isset($_REQUEST['id'])) {
+        if (isset($_REQUEST['id'])) 
+        {
+            /* */
             $item = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $_REQUEST['id']), ARRAY_A);
-            if (!$item) {
+            if (!$item) 
+            {
                 $item = $default;
                 $notice = __('Item not found', 'wpbc');
             }
         }
     }
+
+
 
     
     add_meta_box(
@@ -144,11 +163,20 @@ function wpbc_contacts_form_page_handler()
             </a>
     </h2>
 
-    <?php if (!empty($notice)): ?>
+    <?php 
+    if (!empty($notice)): 
+    ?>
+    
     <div id="notice" class="error"><p><?php echo $notice ?></p></div>
-    <?php endif;?>
-    <?php if (!empty($message)): ?>
+    
+    <?php 
+    endif;
+     
+    if (!empty($message)): 
+    ?>
+    
     <div id="message" class="updated"><p><?php echo $message ?></p></div>
+    
     <?php endif;?>
 
     <form id="form" method="POST">
@@ -173,6 +201,40 @@ function wpbc_contacts_form_page_handler()
 
 function wpbc_contacts_form_meta_box_handler($item)
 {
+
+    /* Inicio Generador de Fecha y hora */
+    function local_date_i18n($format, $timestamp) {
+        $timezone_str = get_option('timezone_string') ?: 'UTC';
+        $timezone = new \DateTimeZone($timezone_str);
+
+        // The date in the local timezone.
+        $date = new \DateTime(null, $timezone);
+        $date->setTimestamp($timestamp);
+        $date_str = $date->format('Y-m-d H:i:s');
+
+        // Pretend the local date is UTC to get the timestamp
+        // to pass to date_i18n().
+        $utc_timezone = new \DateTimeZone('UTC');
+        $utc_date = new \DateTime($date_str, $utc_timezone);
+        $timestamp = $utc_date->getTimestamp();
+
+        return date_i18n($format, $timestamp, true);
+    }
+    /* Fin Generador de Fecha y hora */
+
+    /*
+    $format = 'F d, Y H:i';
+    $timestamp = 1365186960;
+    $local = local_date_i18n($format, $timestamp);
+    $gmt = date_i18n($format, $timestamp);
+    echo "Local: ", $local, " UTC: ", $gmt;
+    echo '</br>';
+    echo "Local: ", time();
+    */
+
+
+
+
     ?>
 <tbody >
 		
@@ -183,14 +245,21 @@ function wpbc_contacts_form_meta_box_handler($item)
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div>
         <p>         
-            <label for="userid"><?php echo get_current_user_id(); ?></label>
+            <label for="user_id"><?php echo get_current_user_id(); ?></label>
+            <br>
+            <label for="user_name"><?php echo get_current_user(); ?></label>
+            <br>
+            <label for="key_id"><?php echo time(); ?></label>
+            <br>
+            <label for="status_id"><?php echo '1' ?></label>
+
 
             <br>
-            <label for="username"><?php echo get_current_user(); ?></label>
-
-            <br>
-            <input id="userid" name="userid" type="hidden" value="<?php echo get_current_user_id(); ?>">
-            <input id="username" name="usernameid" type="hidden" value="<?php echo get_current_user(); ?>">
+            <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
+            <input id="user_name" name="user_name" type="hidden" value="<?php echo get_current_user(); ?>">
+            <input id="key_id" name="key_id" type="hidden" value="<?php echo time(); ?>">
+            <input id="status_id" name="status_id" type="hidden" value="1">
+            
             <!-- <input id="nint" name="nint" type="text" value="<?php echo esc_attr($item['nint'])?>" required> -->
         </p>
         
