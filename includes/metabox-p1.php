@@ -7,11 +7,13 @@ function wpbc_contacts_page_handler()
     $table = new Custom_Table_Example_List_Table();
     $table->prepare_items();
 
-
     $message = '';
     if ('delete' === $table->current_action()) {
         $message = '<div class="updated below-h2" id="message"><p> Registro Eliminado</p></div>';
     }
+
+
+
 
     ?>
 
@@ -49,8 +51,7 @@ function wpbc_contacts_form_page_handler()
     $message = '';
     $notice = '';
 
-
-
+    /*Inicio Array Informacion para manejar CRUD */
     $default = array(
         'id'                    => 0,
         'nint'                  => '',
@@ -69,24 +70,33 @@ function wpbc_contacts_form_page_handler()
         'hasta'                 => '',
         'nombre_pdf'            => '',
         'dir_archivo_externo'   => '',
-
     );
-
+    /*Fin Array Informacion para manejar CRUD */
 
     if ( isset($_REQUEST['nonce']) && wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) {
         
         $item = shortcode_atts($default, $_REQUEST);     
 
         $item_valid = wpbc_validate_contact($item);
+        
+
         if ($item_valid === true) {
+
             if ($item['id'] == 0) {
+                /*Inicio ingreso de Informacion en la tabla*/
                 $result = $wpdb->insert($table_name, $item);
                 $item['id'] = $wpdb->insert_id;
+                
                 if ($result) {
+
                     $message = __('Es registro fue ingresado satisfactoriamente', 'wpbc');
+
                 } else {
+
                     $notice = __('There was an error while saving item', 'wpbc');
                 }
+                /*Fin ingreso de Informacion en la tabla*/
+
             } else {
                 $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                 if ($result) {
@@ -100,6 +110,7 @@ function wpbc_contacts_form_page_handler()
             $notice = $item_valid;
         }
     }
+
     else {
         
         $item = $default;
