@@ -108,6 +108,7 @@ function wpbc_contacts_form_page_handler()
             else 
             {
                 /* Objeto actualizacion de informacion en la tabla*/
+                /*
                 $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                 if ($result) 
                 {
@@ -117,6 +118,7 @@ function wpbc_contacts_form_page_handler()
                 {
                     $notice = __('There was an error while updating item', 'wpbc');
                 }
+                */
             }
         } 
         else 
