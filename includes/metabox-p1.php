@@ -172,6 +172,25 @@ function wpbc_contacts_form_meta_box_handler($item)
 	<div class="formdatabc">		
 		
     <form >
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div>
+        <p>         
+            <label for="userid"><?php echo get_current_user_id(); ?></label>
+
+            <br>
+            <label for="username"><?php echo get_current_user(); ?></label>
+
+            <br>
+            <input id="userid" name="userid" type="hidden" value="<?php echo get_current_user_id(); ?>">
+            <input id="username" name="usernameid" type="hidden" value="<?php echo get_current_user(); ?>">
+            <!-- <input id="nint" name="nint" type="text" value="<?php echo esc_attr($item['nint'])?>" required> -->
+        </p>
+        
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+
 <!-- --------------------------------------------------------------------------------------------------------------- -->		
         <div class="form2bc">
         <p>         

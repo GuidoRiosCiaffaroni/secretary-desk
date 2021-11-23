@@ -179,18 +179,13 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     /*Inicio input en la columan cb*/
     function column_cb($item)
     {
-        return sprintf(
-            '<input type="checkbox" name="id[]" value="%s" />',
-            $item['id']
-        );
+        return sprintf('<input type="checkbox" name="id[]" value="%s" />', $item['id'] );
     }
     /*Fin input en la columan cb*/
 
     /*Inicio controles en la columna detalle*/
     function column_Detalle($item)
     {
-
-
         return sprintf('<a href="?page=%s&action=detail&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Detalle', 'wpbc'));
     }
     /*Fin controles en la columna detalle*/
