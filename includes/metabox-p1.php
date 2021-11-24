@@ -108,7 +108,7 @@ function wpbc_contacts_form_page_handler()
             else 
             {
                 /* Objeto actualizacion de informacion en la tabla*/
-                /*
+                
                 $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                 if ($result) 
                 {
@@ -118,7 +118,7 @@ function wpbc_contacts_form_page_handler()
                 {
                     $notice = __('There was an error while updating item', 'wpbc');
                 }
-                */
+                
 
                 
 
@@ -247,6 +247,9 @@ function wpbc_contacts_form_meta_box_handler($item)
     //echo wp_generate_password( 15, true, true ); // .WfvgX6`V^Vg:,_
 
     ?>
+
+
+
 <tbody >
 		
 	<div class="formdatabc">		
@@ -453,60 +456,7 @@ function wpbc_contacts_form_meta_box_handler($item)
 
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
       
-
-
-
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-<!--
-		<div class="form2bc">
-			<p>
-            <label for="company"><?php _e('Company:', 'wpbc')?></label> 
-		<br>	
-            <input id="company" name="company" type="text" value="<?php echo esc_attr($item['company'])?>">
-        </p><p>	  
-            <label for="web"><?php _e('Web:', 'wpbc')?></label> 
-		<br>
-			<input id="web" name="web" type="text" value="<?php echo esc_attr($item['web'])?>">
-		</p>
-		</div>
--->        
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-<!--
-		<div class="form3bc">
-		<p>
-            <label for="email"><?php _e('E-Mail:', 'wpbc')?></label> 
-		<br>	
-            <input id="email" name="two_email" type="email" value="<?php echo esc_attr($item['two_email'])?>">
-        </p><p>	  
-            <label for="phone"><?php _e('Phone:', 'wpbc')?></label> 
-		<br>
-			<input id="phone" name="two_phone" type="tel" value="<?php echo esc_attr($item['two_phone'])?>">
-		</p><p>	  
-            <label for="job"><?php _e('Job Title:', 'wpbc')?></label> 
-		<br>
-			<input id="job" name="job" type="text" value="<?php echo esc_attr($item['job'])?>">
-		</p>		
-		</div>
--->        
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-<!--
-		<div>		
-			<p>
-		    <label for="address"><?php _e('Address:', 'wpbc')?></label> 
-		<br>
-            <textarea id="addressbc" name="address" cols="100" rows="3" maxlength="240"><?php echo esc_attr($item['address'])?></textarea>
-		</p><p>  
-            <label for="notes"><?php _e('Notes:', 'wpbc')?></label>
-		<br>
-            <textarea id="notesbc" name="notes" cols="100" rows="3" maxlength="240"><?php echo esc_attr($item['notes'])?></textarea>
-		</p>
-		</div>
--->        
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
+      
 
 		</form>
 
@@ -516,5 +466,34 @@ function wpbc_contacts_form_meta_box_handler($item)
 
 		</div>
 </tbody>
+
+
+
+
+
+
+
+
 <?php
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
