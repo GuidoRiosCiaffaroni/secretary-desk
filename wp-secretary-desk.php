@@ -12,32 +12,30 @@
 * Domain Path: /languages
 */
 
-
-
-
-
-
 defined( 'ABSPATH' ) or die( '¡Sin trampas!' );
 
 require plugin_dir_path( __FILE__ ) . 'includes/metabox-p1.php';
 
 function wpbc_custom_admin_styles() {
+    // Carga esta hoja de estilo para poner más bonito el formulario interno
     wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
 	}
 
-// Carga esta hoja de estilo para poner más bonito el formulario
+// Carga esta hoja de estilo para poner más bonito el formulario externo
 wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
 
 
 add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
 
-
+// traduce la pagina a otro idioma 
+/*
 function wpbc_plugin_load_textdomain() {
 load_plugin_textdomain( 'wpbc', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
 }
 
-add_action( 'plugins_loaded', 'wpbc_plugin_load_textdomain' );
 
+add_action( 'plugins_loaded', 'wpbc_plugin_load_textdomain' );
+*/
 
 global $wpbc_db_version;
 $wpbc_db_version = '1.1.0'; 
@@ -52,9 +50,7 @@ function wpbc_install()
     global $wpbc_db_version;
 
     $table_name = $wpdb->prefix . 'secretarydesk'; 
-
-
-   
+ 
     $sql = "CREATE TABLE " . $table_name . " (
         id int(11) NOT NULL AUTO_INCREMENT,
         nint VARCHAR (50) NOT NULL, 
@@ -77,19 +73,14 @@ function wpbc_install()
         user_name VARCHAR (100) NOT NULL,
         status_id int(11) NOT NULL,
         key_id VARCHAR (50) NOT NULL,
-        date 
         PRIMARY KEY  (id)
     );";
-
-
 
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 
     add_option('wpbc_db_version', $wpbc_db_version);
-
-
 
     $installed_ver = get_option('wpbc_db_version');
     if ($installed_ver != $wpbc_db_version) {
@@ -115,7 +106,6 @@ function wpbc_install()
             user_name VARCHAR (100) NOT NULL,
             status_id int(11) NOT NULL,
             key_id VARCHAR (50) NOT NULL,
-            date
             PRIMARY KEY  (id)
         );";        
 
@@ -133,7 +123,6 @@ register_activation_hook(__FILE__, 'wpbc_install');
 function wpbc_install_data()
 {
     global $wpdb;
-
     $table_name = $wpdb->prefix . 'secretarydesk'; 
 
 }
@@ -260,7 +249,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     }
     /*Fin Ordenar Columnas*/
 
-
+    /*Inicio Funcion para borrar por lotes*/    
     function get_bulk_actions()
     {
         $actions = array(
@@ -283,8 +272,9 @@ class Custom_Table_Example_List_Table extends WP_List_Table
             }
         }
     }
+    /*Fin Funcion para borrar por lotes*/
 
-
+    /*Inicio Funcion para paginacion de tabla interior */
     function prepare_items()
     {
         global $wpdb;
@@ -321,6 +311,8 @@ class Custom_Table_Example_List_Table extends WP_List_Table
             'total_pages' => ceil($total_items / $per_page) 
         ));
     }
+    /*Fin Funcion para paginacion de tabla interior */
+
 }
 
 function wpbc_admin_menu()

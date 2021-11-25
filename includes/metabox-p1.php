@@ -37,8 +37,6 @@ function wpbc_contacts_page_handler()
     </form>
 
 </div>
-
-
 <?php
 }
 
@@ -258,7 +256,8 @@ function wpbc_contacts_form_meta_box_handler($item)
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div>
-        <p>         
+        <p>  
+            <!--       
             <label for="user_id"><?php echo get_current_user_id(); ?></label>
             <br>
             <label for="user_name"><?php echo get_current_user(); ?></label>
@@ -266,7 +265,7 @@ function wpbc_contacts_form_meta_box_handler($item)
             <label for="key_id"><?php echo time().'_'.wp_generate_password( 3, false ); ?></label>
             <br>
             <label for="status_id"><?php echo '1' ?></label>
-
+            -->
 
             <br>
             <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
