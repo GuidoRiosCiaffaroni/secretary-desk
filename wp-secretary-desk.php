@@ -25,6 +25,10 @@ function wpbc_custom_admin_styles() {
     wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
 	}
 
+// Carga esta hoja de estilo para poner más bonito el formulario
+wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
+
+
 add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
 
 
@@ -73,6 +77,7 @@ function wpbc_install()
         user_name VARCHAR (100) NOT NULL,
         status_id int(11) NOT NULL,
         key_id VARCHAR (50) NOT NULL,
+        date 
         PRIMARY KEY  (id)
     );";
 
@@ -110,6 +115,7 @@ function wpbc_install()
             user_name VARCHAR (100) NOT NULL,
             status_id int(11) NOT NULL,
             key_id VARCHAR (50) NOT NULL,
+            date
             PRIMARY KEY  (id)
         );";        
 
@@ -384,246 +390,144 @@ add_action('init', 'wpbc_languages');
 
 
 
-
+/*Inicio crear shortcode en la pagina de inicio */
 add_shortcode('kfp_aspirante_form', 'Kfp_Aspirante_form');
- 
+/*Fin crear shortcode enla pagina de inicio*/ 
 
+/*Inicio funcion para crear shortcode en la pagina de inicio */
 function Kfp_Aspirante_form() 
 {
+
+global $wpdb; // Este objeto global permite acceder a la base de datos de WP
+    // Si viene del formulario  graba en la base de datos
+    // Cuidado con el último igual de la condición del if que es doble
+
+        $tabla_aspirantes = $wpdb->prefix . 'secretarydesk'; 
+        $user_id = sanitize_text_field($_POST['user_id']);
+        $key_id = sanitize_text_field($_POST['key_id']);
+        $status_id = sanitize_text_field($_POST['status_id']);
+        $nint = sanitize_text_field($_POST['nint']);
+        $date = sanitize_text_field($_POST['date']);
+        $depto_unid = sanitize_text_field($_POST['depto_unid']);
+
+
+       $wpdb->insert(
+            $tabla_aspirantes,
+            array(
+                'user_id' => $user_id,
+                'key_id' => $key_id,
+                'status_id' => $status_id,
+                'nint' => $nint,
+                'date' => $date,
+                'depto_unid' => $depto_unid,
+
+            )
+        );
+
+    echo "<p class='exito'><b>Tus datos han sido registrados</b>. Gracias por tu interés. En breve contactaré contigo.<p>";
+
+
     // Esta función de PHP activa el almacenamiento en búfer de salida (output buffer)
     // Cuando termine el formulario lo imprime con la función ob_get_clean
     ob_start();
     ?>
 
-
-<tbody >
-        
-    <div class="formdatabc">        
-        
-    <form >
-
+    <form action="<?php get_the_permalink(); ?>" method="post" id="form_aspirante" class="cuestionario">
+        <?php wp_nonce_field('graba_aspirante', 'aspirante_nonce'); ?>
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div>
+        <div class="form-input">
         <p>         
             <label for="user_id"><?php echo get_current_user_id(); ?></label>
             <br>
-            <label for="user_name"><?php echo get_current_user(); ?></label>
+            <label for="user_name"><?php// echo get_current_user(); ?></label>
             <br>
             <label for="key_id"><?php echo time().'_'.wp_generate_password( 3, false ); ?></label>
             <br>
             <label for="status_id"><?php echo '1' ?></label>
-
-
             <br>
             <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
             <input id="user_name" name="user_name" type="hidden" value="<?php echo get_current_user(); ?>">
             <input id="key_id" name="key_id" type="hidden" value="<?php echo time().'_'.wp_generate_password( 3, false ); ?>">
             <input id="status_id" name="status_id" type="hidden" value="1">
             
-            <!-- <input id="nint" name="nint" type="text" value="<?php echo esc_attr($item['nint'])?>" required> -->
         </p>
         
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
-
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form2bc">
+        <div class="form-input">
+
         <p>         
             <label for="nint"><?php _e('N° INT:', 'wpbc')?></label>
             <br>    
-            <input id="nint" name="nint" type="text" value="<?php echo esc_attr($item['nint'])?>" required>
+            <input id="nint" name="nint" type="text" required>
         </p>
 
         <p>
 
-
-        
             <label for="date"><?php _e('Fecha:', 'wpbc')?></label>
-        <br>
-            <input id="date" name="date" type="text" value="<?php echo esc_attr($item['date'])?>"
-                    required>
+            <br>
+            <input id="date" name="date" type="text" required>
+            <br>
         </p>
         
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
 
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div>   
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
         <p>
             <label for="depto_unid"><?php _e('Departamento / Unidad :', 'wpbc')?></label>
-            <br>    
-            <input id="depto_unid" name="depto_unid" type="text" size="106" value="<?php echo esc_attr($item['depto_unid'])?>" required>
-        </p>
-        
-        </div>
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-        
-
-
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div class="form3bc">
-        <p>
-            <label for="nombres"><?php _e('Nombre:', 'wpbc')?></label> 
-            <br>    
-            <input id="nombres" name="nombres" type="text" value="<?php echo esc_attr($item['nombres'])?>" required>
-        </p>
-        <p>   
-            <label for="apellido_paterno"><?php _e('Apellido Paterno:', 'wpbc')?></label> 
             <br>
-            <input id="apellido_paterno" name="apellido_paterno" type="text" value="<?php echo esc_attr($item['apellido_paterno'])?>">
-        </p>
-
-        <p>   
-            <label for="apellido_materno"><?php _e('Apellido Materno:', 'wpbc')?></label> 
-            <br>
-            <input id="apellido_materno" name="apellido_materno" type="text" value="<?php echo esc_attr($item['apellido_materno'])?>">
-        </p>
-
-        </div>
-        
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div class="form2bc">
-        <p>
-            <label for="rut"><?php _e('Rut:', 'wpbc')?></label> 
-            <br>    
-            <input id="rut" name="rut" type="text" value="<?php echo esc_attr($item['rut'])?>" required>
-        </p>
-        <p>   
-            <label for="email"><?php _e('E-mail:', 'wpbc')?></label> 
-            <br>
-            <input id="email" name="email" type="text" value="<?php echo esc_attr($item['email'])?>">
-        </p>
-
-        </div>
-        
-<!-- --------------------------------------------------------------------------------------------------------------- -->  
-
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div>   
-        <p>
-            <label for="perm_admin"><?php _e('Permiso administrativo :', 'wpbc')?></label>
-            <br>    
-            <input id="perm_admin" name="perm_admin" type="text" size="106" value="<?php echo esc_attr($item['perm_admin'])?>" required>
+            <input id="depto_unid" name="depto_unid" type="text" required>
         </p>
         
         </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->    
 
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-      
 
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div>   
-        <p>
-            <label for="fdo_legal"><?php _e('Feriado legal :', 'wpbc')?></label>
-            <br>    
-            <input id="fdo_legal" name="fdo_legal" type="text" size="106" value="<?php echo esc_attr($item['fdo_legal'])?>" required>
-        </p>
-        
+        <div class="form-input">
+            <input type="submit" value="Enviar">
         </div>
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-      
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div>   
-        <p>
-            <label for="perm_parent"><?php _e('Permiso Parental :', 'wpbc')?></label>
-            <br>    
-            <input id="perm_parent" name="perm_parent" type="text" size="106" value="<?php echo esc_attr($item['perm_parent'])?>" required>
-        </p>
-        
-        </div>
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-      
-
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div class="form3bc">
-        <p>
-            <label for="dias"><?php _e('Dias:', 'wpbc')?></label> 
-            <br>    
-            <input id="dias" name="dias" type="text" value="<?php echo esc_attr($item['dias'])?>" required>
-        </p>
-        <p>   
-            <label for="desde"><?php _e('Desde:', 'wpbc')?></label> 
-            <br>
-            <input id="desde" name="desde" type="text" value="<?php echo esc_attr($item['desde'])?>">
-        </p>
-
-        <p>   
-            <label for="hasta"><?php _e('Hasta:', 'wpbc')?></label> 
-            <br>
-            <input id="hasta" name="hasta" type="text" value="<?php echo esc_attr($item['hasta'])?>">
-        </p>
-
-        </div>
-        
-<!-- --------------------------------------------------------------------------------------------------------------- -->         
-
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div>   
-        <p>
-            <label for="nombre_pdf"><?php _e('Nombre PDF :', 'wpbc')?></label>
-            <br>    
-            <input id="nombre_pdf" name="nombre_pdf" type="text" size="106" value="<?php echo esc_attr($item['nombre_pdf'])?>" required>
-        </p>
-        
-        </div>
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-      
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-        <div>   
-        <p>
-            <label for="dir_archivo_externo"><?php _e('Direccion archivo PDF :', 'wpbc')?></label>
-            <br>    
-            <input id="dir_archivo_externo" name="dir_archivo_externo" type="text" size="106" value="<?php echo esc_attr($item['dir_archivo_externo'])?>" required>
-        </p>
-        
-        </div>
-
-<!-- --------------------------------------------------------------------------------------------------------------- --> 
-      
-      
-
-        </form>
-
-
-
-
-
-        </div>
-</tbody>
-
-
-
-
-
-
+    </form>
 
     <?php
      
     // Devuelve el contenido del buffer de salida
     return ob_get_clean();
 }
+/*Fin funcion para crear shotcode en la pagina de inicio */
 
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
