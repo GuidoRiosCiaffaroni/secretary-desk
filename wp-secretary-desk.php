@@ -394,13 +394,33 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
     // Si viene del formulario  graba en la base de datos
     // Cuidado con el último igual de la condición del if que es doble
 
+        
+        
         $tabla_aspirantes = $wpdb->prefix . 'secretarydesk'; 
+
         $user_id = sanitize_text_field($_POST['user_id']);
         $key_id = sanitize_text_field($_POST['key_id']);
         $status_id = sanitize_text_field($_POST['status_id']);
         $nint = sanitize_text_field($_POST['nint']);
         $date = sanitize_text_field($_POST['date']);
         $depto_unid = sanitize_text_field($_POST['depto_unid']);
+        $nombres = sanitize_text_field($_POST['depto_unid']);
+        $apellido_paterno = sanitize_text_field($_POST['depto_unid']);
+        $apellido_materno = sanitize_text_field($_POST['depto_unid']);
+        $rut = sanitize_text_field($_POST['depto_unid']);
+        $email = sanitize_text_field($_POST['depto_unid']);
+        $perm_admin = sanitize_text_field($_POST['depto_unid']);
+        $fdo_legal = sanitize_text_field($_POST['depto_unid']);
+        $perm_parent = sanitize_text_field($_POST['depto_unid']);
+        $dias = sanitize_text_field($_POST['depto_unid']);
+        $desde = sanitize_text_field($_POST['depto_unid']);
+        $hasta = sanitize_text_field($_POST['depto_unid']);
+        $nombre_pdf = sanitize_text_field($_POST['depto_unid']);
+        $dir_archivo_externo = sanitize_text_field($_POST['depto_unid']);
+        $user_id = sanitize_text_field($_POST['depto_unid']);
+        $user_name = sanitize_text_field($_POST['depto_unid']);
+        $status_id = sanitize_text_field($_POST['depto_unid']);
+        $key_id = sanitize_text_field($_POST['depto_unid']);
 
 
        $wpdb->insert(
@@ -412,6 +432,23 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 'nint' => $nint,
                 'date' => $date,
                 'depto_unid' => $depto_unid,
+                'nombres'               => $nombres,
+                'apellido_paterno'      => $apellido_paterno,
+                'apellido_materno'      => $apellido_materno,
+                'rut'                   => $rut,
+                'email'                 => $email,
+                'perm_admin'            => $perm_admin,
+                'fdo_legal'             => $fdo_legal,
+                'perm_parent'           => $perm_parent,
+                'dias'                  => $dias,
+                'desde'                 => $desde,
+                'hasta'                 => $hasta,
+                'nombre_pdf'            => $nombre_pdf,
+                'dir_archivo_externo'   => $dir_archivo_externo,
+                'user_id'               => $user_id,
+                'user_name'             => $user_name,
+                'status_id'             => $status_id,
+                'key_id'                => $key_id,
 
             )
         );
@@ -428,7 +465,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         <?php wp_nonce_field('graba_aspirante', 'aspirante_nonce'); ?>
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div class="form-input">
-        <p>         
+        <p> 
+            <!--        
             <label for="user_id"><?php echo get_current_user_id(); ?></label>
             <br>
             <label for="user_name"><?php// echo get_current_user(); ?></label>
@@ -437,6 +475,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             <br>
             <label for="status_id"><?php echo '1' ?></label>
             <br>
+        -->
             <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
             <input id="user_name" name="user_name" type="hidden" value="<?php echo get_current_user(); ?>">
             <input id="key_id" name="key_id" type="hidden" value="<?php echo time().'_'.wp_generate_password( 3, false ); ?>">
