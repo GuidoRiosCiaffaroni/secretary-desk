@@ -33,19 +33,19 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $apellido_paterno = sanitize_text_field($_POST['apellido_paterno']);
         $apellido_materno = sanitize_text_field($_POST['apellido_materno']);
         $rut = sanitize_text_field($_POST['rut']);
-        $email = sanitize_text_field($_POST['depto_unid']);
-        $perm_admin = sanitize_text_field($_POST['depto_unid']);
-        $fdo_legal = sanitize_text_field($_POST['depto_unid']);
-        $perm_parent = sanitize_text_field($_POST['depto_unid']);
-        $dias = sanitize_text_field($_POST['depto_unid']);
-        $desde = sanitize_text_field($_POST['depto_unid']);
-        $hasta = sanitize_text_field($_POST['depto_unid']);
-        $nombre_pdf = sanitize_text_field($_POST['depto_unid']);
-        $dir_archivo_externo = sanitize_text_field($_POST['depto_unid']);
-        $user_id = sanitize_text_field($_POST['depto_unid']);
+        $email = sanitize_text_field($_POST['email']);
+        $perm_admin = sanitize_text_field($_POST['perm_admin']);
+        $fdo_legal = sanitize_text_field($_POST['fdo_legal']);
+        $perm_parent = sanitize_text_field($_POST['perm_parent']);
+        $dias = sanitize_text_field($_POST['dias']);
+        $desde = sanitize_text_field($_POST['desde']);
+        $hasta = sanitize_text_field($_POST['hasta ']);
+        $nombre_pdf = sanitize_text_field($_POST['nombre_pdf']);
+        $dir_archivo_externo = sanitize_text_field($_POST['dir_archivo_externo']);
+        $user_id = sanitize_text_field($_POST['user_id']);
         $user_name = sanitize_text_field($_POST['depto_unid']);
-        $status_id = sanitize_text_field($_POST['depto_unid']);
-        $key_id = sanitize_text_field($_POST['depto_unid']);
+        $status_id = sanitize_text_field($_POST['status_id']);
+        $key_id = sanitize_text_field($_POST['key_id']);
 
 
        $wpdb->insert(
@@ -171,7 +171,92 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="perm_admin"><?php _e('Permiso Administrativo :', 'wpbc')?></label>
+            <br>
+            <input id="perm_admin" name="rut" type="perm_admin" required>
+        </p>
+             
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
 
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="fdo_legal"><?php _e('Feriado Legal :', 'wpbc')?></label>
+            <br>
+            <input id="fdo_legal" name="fdo_legal" type="fdo_legal" required>
+        </p>
+             
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="perm_parent"><?php _e('Permiso parental :', 'wpbc')?></label>
+            <br>
+            <input id="perm_parent" name="perm_parent" type="perm_parent" required>
+        </p>
+             
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="dias"><?php _e('Dias :', 'wpbc')?></label>
+            <br>
+            <input id="dias" name="dias" type="dias" required>
+        </p>
+
+        <p>
+            <label for="desde"><?php _e('Desde :', 'wpbc')?></label>
+            <br>
+            <input id="desde" name="desde" type="desde" required>
+        </p>
+
+        <p>
+            <label for="hasta"><?php _e('Hasta :', 'wpbc')?></label>
+            <br>
+            <input id="hasta" name="hasta" type="hasta" required>
+        </p>
+
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="nombre_pdf"><?php _e('Nombre PDF :', 'wpbc')?></label>
+            <br>
+            <input id="nombre_pdf" name="nombre_pdf" type="nombre_pdf" required>
+        </p>
+
+
+
+
+        
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="dir_archivo_externo"><?php _e('Direccion archivo :', 'wpbc')?></label>
+            <br>
+            <input id="dir_archivo_externo" name="dir_archivo_externo" type="dir_archivo_externo" required>
+        </p>
+
+
+
+
+        
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 
 
