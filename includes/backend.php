@@ -3,7 +3,7 @@
 function wpbc_contacts_page_handler()
 {
     global $wpdb;
-
+    
     $table = new Custom_Table_Example_List_Table();
     $table->prepare_items();
 
@@ -11,11 +11,7 @@ function wpbc_contacts_page_handler()
     if ('delete' === $table->current_action()) {
         $message = '<div class="updated below-h2" id="message"><p> Registro Eliminado</p></div>';
     }
-
-
-
-
-    ?>
+?>
 
 
 
