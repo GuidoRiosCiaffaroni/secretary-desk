@@ -48,13 +48,14 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         // $file = sanitize_text_field($_POST['file']);
 
         /*para subir archivos*/
-        $filename = sanitize_text_field($_FILES["image"]["name"]);
-        $deprecated = null;
-        $bits = file_get_contents($_FILES["image"]["tmp_name"]);
-        $time = current_time('mysql');
-        $file = wp_upload_bits($filename, $deprecated, $bits, $time);
+        //$filename = sanitize_text_field($_FILES["image"]["name"]);
+        //$deprecated = NULL;
+        //$bits = file_get_contents($_FILES["image"]["tmp_name"],true);
+        //$time = current_time('mysql');
+        //$file = wp_upload_bits($filename, $deprecated, $bits, $time);
         /*Para subir archivos*/
         
+        //$upload = wp_upload_bits($_FILES['file']['name'], null, $_FILES['file']['tmp_name']);
 
 
        $wpdb->insert(
@@ -82,7 +83,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 'user_id'               => $user_id,
                 'status_id'             => $status_id,
                 'key_id'                => $key_id,
-                'file'                  => $file,
+                'file'                  => $upload,
 
             )
         );
