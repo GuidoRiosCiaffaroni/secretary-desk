@@ -24,6 +24,12 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/frontend.php';
 /*Importa funciones de instalacion*/
 require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
 
+/*Funciones requeridas para subir archivos */
+/* https://wordpress.stackexchange.com/questions/251236/upload-images-to-custom-database-table-in-admin-backend */
+ require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+ require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+ require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
 
 
 

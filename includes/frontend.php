@@ -250,13 +250,24 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             <br>
             <input id="dir_archivo_externo" name="dir_archivo_externo" type="dir_archivo_externo" required>
         </p>
-
-
-
-
         
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="file"><?php _e('archivo :', 'wpbc')?></label>
+            <br>
+            <input id="file" name="file" type="file" required>
+        </p>
+        
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+
+
 
 
 

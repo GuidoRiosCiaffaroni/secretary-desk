@@ -25,9 +25,9 @@ function wpbc_install()
         nombre_pdf VARCHAR (100) NOT NULL,
         dir_archivo_externo VARCHAR (100) NOT NULL,
         user_id int(11) NOT NULL,
-        user_name VARCHAR (100) NOT NULL,
         status_id int(11) NOT NULL,
         key_id VARCHAR (50) NOT NULL,
+        file VARCHAR (100) NOT NULL,
         PRIMARY KEY  (id)
     );";
 
@@ -58,9 +58,9 @@ function wpbc_install()
             nombre_pdf VARCHAR (100) NOT NULL,
             dir_archivo_externo VARCHAR (100) NOT NULL,
             user_id int(11) NOT NULL,
-            user_name VARCHAR (100) NOT NULL,
             status_id int(11) NOT NULL,
             key_id VARCHAR (50) NOT NULL,
+            file VARCHAR (100) NOT NULL,
             PRIMARY KEY  (id)
         );";        
 
