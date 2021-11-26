@@ -45,7 +45,19 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $user_id = sanitize_text_field($_POST['user_id']);
         $status_id = sanitize_text_field($_POST['status_id']);
         $key_id = sanitize_text_field($_POST['key_id']);
-        // $file = sanitize_text_field($_POST['file']);
+        $file = sanitize_text_field($_POST['file']);
+        $deprecated = NULL;
+        //$bits = require_once dirname( __DIR__ ) ;
+        //$bits = file_get_contents($file,true);
+
+        
+
+
+
+
+
+
+        
 
         /*para subir archivos*/
         //$filename = sanitize_text_field($_FILES["image"]["name"]);
@@ -100,6 +112,10 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         <?php wp_nonce_field('graba_aspirante', 'aspirante_nonce'); ?>
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div class="form-input">
+            <label ><?php echo '$file:'.$file ?></label></br>
+            <label ><?php echo '$deprecated :'.$deprecated ?></label></br>
+            <label ><?php echo '$bits :'.$bits ?></label></br>
+            <br> 
         <p> 
 
             <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
