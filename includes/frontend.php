@@ -45,19 +45,17 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $user_id = sanitize_text_field($_POST['user_id']);
         $status_id = sanitize_text_field($_POST['status_id']);
         $key_id = sanitize_text_field($_POST['key_id']);
-        $file = sanitize_text_field($_POST['file']);
-        $deprecated = NULL;
+        
+
+
+        $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
+
+        //$file = sanitize_text_field($_POST['file']);
+        //$deprecated = NULL;
+        //$bits = file_get_contents($_FILES["C:/laragon/www/wordpress/wp-content/plugins/secretary-desk/readme.txt"]["name"],true);
+
         //$bits = require_once dirname( __DIR__ ) ;
         //$bits = file_get_contents($file,true);
-
-        
-
-
-
-
-
-
-        
 
         /*para subir archivos*/
         //$filename = sanitize_text_field($_FILES["image"]["name"]);
@@ -108,13 +106,13 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
     ob_start();
     ?>
 
-    <form action="<?php get_the_permalink(); ?>" method="post" id="form_aspirante" class="cuestionario">
+    <form action="<?php get_the_permalink(); ?>" method="post" id="form_aspirante" class="cuestionario" enctype="multipart/form-data">
         <?php wp_nonce_field('graba_aspirante', 'aspirante_nonce'); ?>
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
-            <label ><?php echo '$file:'.$file ?></label></br>
-            <label ><?php echo '$deprecated :'.$deprecated ?></label></br>
-            <label ><?php echo '$bits :'.$bits ?></label></br>
+        <div>
+            <label ><?php echo '$file : '.$file ?></label></br>
+            <label ><?php echo '$deprecated : '.$deprecated ?></label></br>
+            <label ><?php echo '$bits : '.$bits ?></label></br>
             <br> 
         <p> 
 
@@ -129,19 +127,19 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
 
         <p>         
             <label for="nint"><?php _e('N° INT:', 'wpbc')?></label>
             <br>    
-            <input id="nint" name="nint" type="text" required>
+            <input id="nint" name="nint" type="text">
         </p>
 
         <p>
 
             <label for="date"><?php _e('Fecha:', 'wpbc')?></label>
             <br>
-            <input id="date" name="date" type="text" required>
+            <input id="date" name="date" type="text">
             <br>
         </p>
         
@@ -149,82 +147,82 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="depto_unid"><?php _e('Departamento / Unidad :', 'wpbc')?></label>
             <br>
-            <input id="depto_unid" name="depto_unid" type="text" required>
+            <input id="depto_unid" name="depto_unid" type="text">
         </p>
         
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="nombres"><?php _e('Nombres :', 'wpbc')?></label>
             <br>
-            <input id="nombres" name="nombres" type="text" required>
+            <input id="nombres" name="nombres" type="text" >
         </p>
 
         <p>
             <label for="apellido_paterno"><?php _e('Apellido Paterno :', 'wpbc')?></label>
             <br>
-            <input id="apellido_paterno" name="apellido_paterno" type="text" required>
+            <input id="apellido_paterno" name="apellido_paterno" type="text" >
         </p>
 
         <p>
             <label for="apellido_materno"><?php _e('Apellido Materno :', 'wpbc')?></label>
             <br>
-            <input id="apellido_materno" name="apellido_materno" type="text" required>
+            <input id="apellido_materno" name="apellido_materno" type="text" >
         </p>        
 
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="rut"><?php _e('Rut :', 'wpbc')?></label>
             <br>
-            <input id="rut" name="rut" type="text" required>
+            <input id="rut" name="rut" type="text" >
         </p>
 
         <p>
             <label for="email"><?php _e('email :', 'wpbc')?></label>
             <br>
-            <input id="email" name="email" type="text" required>
+            <input id="email" name="email" type="text" >
         </p>
              
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="perm_admin"><?php _e('Permiso Administrativo :', 'wpbc')?></label>
             <br>
-            <input id="perm_admin" name="rut" type="perm_admin" required>
+            <input id="perm_admin" name="rut" type="perm_admin">
         </p>
              
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="fdo_legal"><?php _e('Feriado Legal :', 'wpbc')?></label>
             <br>
-            <input id="fdo_legal" name="fdo_legal" type="fdo_legal" required>
+            <input id="fdo_legal" name="fdo_legal" type="fdo_legal">
         </p>
              
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="perm_parent"><?php _e('Permiso parental :', 'wpbc')?></label>
             <br>
-            <input id="perm_parent" name="perm_parent" type="perm_parent" required>
+            <input id="perm_parent" name="perm_parent" type="perm_parent">
         </p>
              
         </div>
@@ -232,34 +230,34 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="dias"><?php _e('Dias :', 'wpbc')?></label>
             <br>
-            <input id="dias" name="dias" type="dias" required>
+            <input id="dias" name="dias" type="dias">
         </p>
 
         <p>
             <label for="desde"><?php _e('Desde :', 'wpbc')?></label>
             <br>
-            <input id="desde" name="desde" type="desde" required>
+            <input id="desde" name="desde" type="desde">
         </p>
 
         <p>
             <label for="hasta"><?php _e('Hasta :', 'wpbc')?></label>
             <br>
-            <input id="hasta" name="hasta" type="hasta" required>
+            <input id="hasta" name="hasta" type="hasta">
         </p>
 
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="nombre_pdf"><?php _e('Nombre PDF :', 'wpbc')?></label>
             <br>
-            <input id="nombre_pdf" name="nombre_pdf" type="nombre_pdf" required>
+            <input id="nombre_pdf" name="nombre_pdf" type="nombre_pdf">
         </p>
 
 
@@ -270,11 +268,11 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
-        <div class="form-input">
+        <div>
         <p>
             <label for="dir_archivo_externo"><?php _e('Direccion archivo :', 'wpbc')?></label>
             <br>
-            <input id="dir_archivo_externo" name="dir_archivo_externo" type="dir_archivo_externo" required>
+            <input id="dir_archivo_externo" name="dir_archivo_externo" type="dir_archivo_externo">
         </p>
         
         </div>
@@ -286,7 +284,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         <p>
             <label for="file"><?php _e('archivo :', 'wpbc')?></label>
             <br>
-            <input id="file" name="file" type="file" required>
+            
+            <input type="file" name="wp_custom_attachment"id="wp_custom_attachment" size="50" />
         </p>
         
         </div>
