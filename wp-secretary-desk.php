@@ -19,11 +19,13 @@ defined( 'ABSPATH' ) or die( '¡Sin trampas!' );
 require plugin_dir_path( __FILE__ ) . 'includes/backend.php';
 
 /*Importa funciones administracion frontend*/
-require_once plugin_dir_path( __FILE__ ) . 'includes/frontend.php';;
+require_once plugin_dir_path( __FILE__ ) . 'includes/frontend.php';
 
 /*Importa funciones de instalacion*/
-require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';;
+require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
 
+/*Importa funciones de menu*/
+require_once plugin_dir_path( __FILE__ ) . 'includes/menu.php';
 
 
 
@@ -259,41 +261,8 @@ class Custom_Table_Example_List_Table extends WP_List_Table
 
 }
 
-function wpbc_admin_menu()
-{
-    add_menu_page(
-        __('Registro', 'wpbc'), 
-        __('Registro', 'wpbc'), 
-        'activate_plugins', 
-        'registros', 
-        'wpbc_contacts_page_handler'
-    );
-
-
-    add_submenu_page(
-        'Registro', 
-        __('Registro', 'wpbc'), 
-        __('Registro', 'wpbc'), 
-        'activate_plugins', 
-        'registros', 
-        'wpbc_contacts_page_handler'
-    );
-   
-    add_submenu_page(
-        'Registro', 
-        __('Nuevo', 'wpbc'), 
-        __('Nuevo', 'wpbc'), 
-        'activate_plugins', 
-        'registro_form', 
-        'wpbc_contacts_form_page_handler'
-    );
-
-}
-
-add_action(
-    'admin_menu', 
-    'wpbc_admin_menu'
-);
+/* inicio funciones de menu require_once plugin_dir_path( __FILE__ ) . 'includes/menu.php'; */
+wpbc_admin_menu();
 
 
 
