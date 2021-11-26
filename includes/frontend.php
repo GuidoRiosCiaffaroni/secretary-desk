@@ -29,10 +29,10 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $nint = sanitize_text_field($_POST['nint']);
         $date = sanitize_text_field($_POST['date']);
         $depto_unid = sanitize_text_field($_POST['depto_unid']);
-        $nombres = sanitize_text_field($_POST['depto_unid']);
-        $apellido_paterno = sanitize_text_field($_POST['depto_unid']);
-        $apellido_materno = sanitize_text_field($_POST['depto_unid']);
-        $rut = sanitize_text_field($_POST['depto_unid']);
+        $nombres = sanitize_text_field($_POST['nombres']);
+        $apellido_paterno = sanitize_text_field($_POST['apellido_paterno']);
+        $apellido_materno = sanitize_text_field($_POST['apellido_materno']);
+        $rut = sanitize_text_field($_POST['rut']);
         $email = sanitize_text_field($_POST['depto_unid']);
         $perm_admin = sanitize_text_field($_POST['depto_unid']);
         $fdo_legal = sanitize_text_field($_POST['depto_unid']);
@@ -132,6 +132,48 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="nombres"><?php _e('Nombres :', 'wpbc')?></label>
+            <br>
+            <input id="nombres" name="nombres" type="text" required>
+        </p>
+
+        <p>
+            <label for="apellido_paterno"><?php _e('Apellido Paterno :', 'wpbc')?></label>
+            <br>
+            <input id="apellido_paterno" name="apellido_paterno" type="text" required>
+        </p>
+
+        <p>
+            <label for="apellido_materno"><?php _e('Apellido Materno :', 'wpbc')?></label>
+            <br>
+            <input id="apellido_materno" name="apellido_materno" type="text" required>
+        </p>        
+
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->    
+<!-- --------------------------------------------------------------------------------------------------------------- -->        
+        <div class="form-input">
+        <p>
+            <label for="rut"><?php _e('Rut :', 'wpbc')?></label>
+            <br>
+            <input id="rut" name="rut" type="text" required>
+        </p>
+
+        <p>
+            <label for="email"><?php _e('email :', 'wpbc')?></label>
+            <br>
+            <input id="email" name="email" type="text" required>
+        </p>
+             
+        </div>
+<!-- --------------------------------------------------------------------------------------------------------------- --> 
+
+
+
+
 
 
         <div class="form-input">
