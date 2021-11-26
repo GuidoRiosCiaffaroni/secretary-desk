@@ -16,6 +16,11 @@ defined( 'ABSPATH' ) or die( '¡Sin trampas!' );
 
 require plugin_dir_path( __FILE__ ) . 'includes/metabox-p1.php';
 
+/*Importa funciones de instalacion*/
+require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';;
+
+
+
 function wpbc_custom_admin_styles() {
     // Carga esta hoja de estilo para poner más bonito el formulario interno
     wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
@@ -44,6 +49,9 @@ global $sistname;
 $sistname = 'secretarydesk'; 
 
 
+wpbc_install();
+
+/*
 function wpbc_install()
 {
     global $wpdb;
@@ -116,6 +124,7 @@ function wpbc_install()
         update_option('wpbc_db_version', $wpbc_db_version);
     }
 }
+*/
 
 register_activation_hook(__FILE__, 'wpbc_install');
 
