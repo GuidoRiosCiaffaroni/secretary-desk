@@ -48,8 +48,9 @@ $wpbc_db_version = '1.1.0';
 global $sistname;
 $sistname = 'secretarydesk'; 
 
-
+/*funciones de instalacion require_once plugin_dir_path( __FILE__ ) . 'includes/install.php'; */
 wpbc_install();
+
 
 /*
 function wpbc_install()
