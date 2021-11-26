@@ -43,9 +43,18 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $nombre_pdf = sanitize_text_field($_POST['nombre_pdf']);
         $dir_archivo_externo = sanitize_text_field($_POST['dir_archivo_externo']);
         $user_id = sanitize_text_field($_POST['user_id']);
-        $user_name = sanitize_text_field($_POST['depto_unid']);
         $status_id = sanitize_text_field($_POST['status_id']);
         $key_id = sanitize_text_field($_POST['key_id']);
+        // $file = sanitize_text_field($_POST['file']);
+
+        /*para subir archivos*/
+        $filename = sanitize_text_field($_FILES["image"]["name"]);
+        $deprecated = null;
+        $bits = file_get_contents($_FILES["image"]["tmp_name"]);
+        $time = current_time('mysql');
+        $file = wp_upload_bits($filename, $deprecated, $bits, $time);
+        /*Para subir archivos*/
+        
 
 
        $wpdb->insert(
@@ -71,9 +80,9 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 'nombre_pdf'            => $nombre_pdf,
                 'dir_archivo_externo'   => $dir_archivo_externo,
                 'user_id'               => $user_id,
-                'user_name'             => $user_name,
                 'status_id'             => $status_id,
                 'key_id'                => $key_id,
+                'file'                  => $file,
 
             )
         );
@@ -265,9 +274,6 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
-
-
-
 
 
 
