@@ -1,9 +1,11 @@
 <?php
 
+
+
 function wpbc_contacts_page_handler()
 {
     global $wpdb;
-    
+
     $table = new Custom_Table_Example_List_Table();
     $table->prepare_items();
 
@@ -11,9 +13,8 @@ function wpbc_contacts_page_handler()
     if ('delete' === $table->current_action()) {
         $message = '<div class="updated below-h2" id="message"><p> Registro Eliminado</p></div>';
     }
+
 ?>
-
-
 
 <!-- Inicio Pagina Pricipal -->
 <div class="wrap">
@@ -33,6 +34,8 @@ function wpbc_contacts_page_handler()
     </form>
 
 </div>
+
+
 <?php
 }
 
@@ -139,9 +142,6 @@ function wpbc_contacts_form_page_handler()
             }
         }
     }
-
-
-
     
     add_meta_box(
         'contacts_form_meta_box', 
@@ -153,6 +153,9 @@ function wpbc_contacts_form_page_handler()
     );
 
     ?>
+
+
+
 
 <div class="wrap">
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
@@ -234,8 +237,6 @@ function wpbc_contacts_form_meta_box_handler($item)
 
 
 
-
- 
     //echo wp_generate_password();                 // @iU!ZnjUWZsg
     //echo wp_generate_password( 15, false );      // YdD6j750MeiOkPa
     //echo wp_generate_password( 15, true, true ); // .WfvgX6`V^Vg:,_
