@@ -91,16 +91,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div class="form-input">
         <p> 
-            <!--        
-            <label for="user_id"><?php echo get_current_user_id(); ?></label>
-            <br>
-            <label for="user_name"><?php// echo get_current_user(); ?></label>
-            <br>
-            <label for="key_id"><?php echo time().'_'.wp_generate_password( 3, false ); ?></label>
-            <br>
-            <label for="status_id"><?php echo '1' ?></label>
-            <br>
-        -->
+
             <input id="user_id" name="user_id" type="hidden" value="<?php echo get_current_user_id(); ?>">
             <input id="user_name" name="user_name" type="hidden" value="<?php echo get_current_user(); ?>">
             <input id="key_id" name="key_id" type="hidden" value="<?php echo time().'_'.wp_generate_password( 3, false ); ?>">

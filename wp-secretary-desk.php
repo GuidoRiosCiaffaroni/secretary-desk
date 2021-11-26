@@ -33,9 +33,8 @@ function wpbc_custom_admin_styles() {
 
 	}
 
-// Carga esta hoja de estilo para poner más bonito el formulario externo
-wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
-
+    // Carga esta hoja de estilo para poner más bonito el formulario externo
+    wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
 
 add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
 
@@ -168,7 +167,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
 
 
     /* Inicio Ordenar Columnas*/
-   function get_sortable_columns()
+    function get_sortable_columns()
     {
         $sortable_columns = array(
             'nint'                  => array('N° INT', true),
@@ -259,6 +258,12 @@ class Custom_Table_Example_List_Table extends WP_List_Table
 
 }
 
+/*Fin clase tabla*/
+
+
+
+
+
 function wpbc_admin_menu()
 {
     add_menu_page(
@@ -296,7 +301,7 @@ add_action(
 );
 
 
-
+/*Fin funciones para validar datos tabla backend*/
 function wpbc_validate_contact($item)
 {
     $messages = array();
@@ -314,6 +319,7 @@ function wpbc_validate_contact($item)
     if (empty($messages)) return true;
     return implode('<br />', $messages);
 }
+/*Fin funciones para validar datos tabla backend*/
 
 
 function wpbc_languages()
