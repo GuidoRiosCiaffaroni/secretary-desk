@@ -47,7 +47,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $key_id = sanitize_text_field($_POST['key_id']);
         
 
-
+//https://stackoverflow.com/questions/33748430/wordpress-user-image-upload
         $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
         //$file = sanitize_text_field($_POST['file']);
