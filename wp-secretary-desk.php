@@ -24,6 +24,9 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/frontend.php';
 /*Importa funciones de instalacion*/
 require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
 
+/*Importa funciones de menu*/
+require_once(ABSPATH . 'wp-content/plugins/secretary-desk/includes/backend_menu.php');
+
 /*Funciones requeridas para subir archivos */
 /* https://wordpress.stackexchange.com/questions/251236/upload-images-to-custom-database-table-in-admin-backend */
  require_once(ABSPATH . "wp-admin" . '/includes/image.php');

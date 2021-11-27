@@ -5,12 +5,15 @@ add_shortcode('kfp_aspirante_form', 'Kfp_Aspirante_form');
 /*Fin crear shortcode enla pagina de inicio*/ 
 
 /*Inicio funcion para crear shortcode en la pagina de inicio */
+
+
+
+
 function Kfp_Aspirante_form() 
 {
 
 global $wpdb; // Este objeto global permite acceder a la base de datos de WP
     // Si viene del formulario  graba en la base de datos
-    // Cuidado con el último igual de la condición del if que es doble
 
         
         if (get_current_user_id() != NULL) 
@@ -47,26 +50,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $key_id = sanitize_text_field($_POST['key_id']);
         
 
-//https://stackoverflow.com/questions/33748430/wordpress-user-image-upload
+        //https://stackoverflow.com/questions/33748430/wordpress-user-image-upload
         $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
-
-
-        //$file = sanitize_text_field($_POST['file']);
-        //$deprecated = NULL;
-        //$bits = file_get_contents($_FILES["C:/laragon/www/wordpress/wp-content/plugins/secretary-desk/readme.txt"]["name"],true);
-
-        //$bits = require_once dirname( __DIR__ ) ;
-        //$bits = file_get_contents($file,true);
-
-        /*para subir archivos*/
-        //$filename = sanitize_text_field($_FILES["image"]["name"]);
-        //$deprecated = NULL;
-        //$bits = file_get_contents($_FILES["image"]["tmp_name"],true);
-        //$time = current_time('mysql');
-        //$file = wp_upload_bits($filename, $deprecated, $bits, $time);
-        /*Para subir archivos*/
-        
-        //$upload = wp_upload_bits($_FILES['file']['name'], null, $_FILES['file']['tmp_name']);
 
 
        $wpdb->insert(
