@@ -56,10 +56,19 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         
 
         //https://stackoverflow.com/questions/33748430/wordpress-user-image-upload
-        
         //$upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
-        wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
+
+        //https://developer.wordpress.org/reference/functions/wp_upload_dir/
+        $current_user = wp_get_current_user();
+        $upload_dir   = wp_upload_dir();
+ 
+        if ( isset( $current_user->user_login ) && ! empty( $upload_dir['basedir'] ) ) {
+            $user_dirname = $upload_dir['basedir'].'/'.$current_user->user_login;
+            if ( ! file_exists( $user_dirname ) ) {
+                wp_mkdir_p( $user_dirname );
+            }
+        }
 
 
        $wpdb->insert(
@@ -127,7 +136,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 $ruta = $ruta . '/proyecto';
 
 
-                 echo 'ruta ->' . $ruta . '<br />';
+                echo 'ruta ->' . $ruta . '<br />';
                 echo 'path ->' . $upload_dir['path'] . '/'.date('d').'<br />';
                 echo 'url ->' . $upload_dir['url'] . '<br />';
                 echo 'subdir ->' . $upload_dir['subdir'] . '<br />';
