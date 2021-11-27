@@ -21,15 +21,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         	echo "<p class='exito'><b>Usuario validado</b>. Puede ingresar los datos.<p>"; 
     	}
 
-
-
-        /*Inicio crea directorio de almacenaje*/
-        //wp_mkdir_p( ABSPATH . 'wp-content/uploads/doc/' . date('Y-m-d') );        
-        /*Fin crea directorio de almacenaje*/
-
-
         $tabla_aspirantes = $wpdb->prefix . 'secretarydesk'; 
-
 
         $user_id                = sanitize_text_field($_POST['user_id']);
         $key_id                 = sanitize_text_field($_POST['key_id']);
@@ -73,7 +65,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         */
 
 
-
+        /* Inicio subir archivo */
         $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
         $current_user = wp_get_current_user();
@@ -90,7 +82,12 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
         rename($upload['file'] , $user_dirname.time().'_'.$_FILES['wp_custom_attachment']['name']);  
 
-        $file = date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name'];      
+        $file = date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name']; 
+
+        /* Fin subir archivo */     
+
+
+
 
         /*
         $thefile = $upload['file'];
