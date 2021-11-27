@@ -50,6 +50,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 //https://stackoverflow.com/questions/33748430/wordpress-user-image-upload
         $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
+
         //$file = sanitize_text_field($_POST['file']);
         //$deprecated = NULL;
         //$bits = file_get_contents($_FILES["C:/laragon/www/wordpress/wp-content/plugins/secretary-desk/readme.txt"]["name"],true);
@@ -110,9 +111,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         <?php wp_nonce_field('graba_aspirante', 'aspirante_nonce'); ?>
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div>
-            <label ><?php echo '$file : '.$file ?></label></br>
-            <label ><?php echo '$deprecated : '.$deprecated ?></label></br>
-            <label ><?php echo '$bits : '.$bits ?></label></br>
+            <label ><?php echo '$_FILES : '. $_FILES['wp_custom_attachment']['name'] ?></label></br>
+            <label ><?php echo '$_FILES : '. $_FILES['wp_custom_attachment']['tmp_name'] ?></label></br>
             <br> 
         <p> 
 
