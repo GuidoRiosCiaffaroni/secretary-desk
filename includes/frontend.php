@@ -31,48 +31,46 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $tabla_aspirantes = $wpdb->prefix . 'secretarydesk'; 
 
 
-        $user_id = sanitize_text_field($_POST['user_id']);
-        $key_id = sanitize_text_field($_POST['key_id']);
-        $status_id = sanitize_text_field($_POST['status_id']);
-        $nint = sanitize_text_field($_POST['nint']);
-        $date = sanitize_text_field($_POST['date']);
-        $depto_unid = sanitize_text_field($_POST['depto_unid']);
-        $nombres = sanitize_text_field($_POST['nombres']);
-        $apellido_paterno = sanitize_text_field($_POST['apellido_paterno']);
-        $apellido_materno = sanitize_text_field($_POST['apellido_materno']);
-        $rut = sanitize_text_field($_POST['rut']);
-        $email = sanitize_text_field($_POST['email']);
-        $perm_admin = sanitize_text_field($_POST['perm_admin']);
-        $fdo_legal = sanitize_text_field($_POST['fdo_legal']);
-        $perm_parent = sanitize_text_field($_POST['perm_parent']);
-        $dias = sanitize_text_field($_POST['dias']);
-        $desde = sanitize_text_field($_POST['desde']);
-        $hasta = sanitize_text_field($_POST['hasta ']);
-        $nombre_pdf = sanitize_text_field($_POST['nombre_pdf']);
-        $dir_archivo_externo = sanitize_text_field($_POST['dir_archivo_externo']);
-        $user_id = sanitize_text_field($_POST['user_id']);
-        $status_id = sanitize_text_field($_POST['status_id']);
-        $key_id = sanitize_text_field($_POST['key_id']);
+        $user_id                = sanitize_text_field($_POST['user_id']);
+        $key_id                 = sanitize_text_field($_POST['key_id']);
+        $status_id              = sanitize_text_field($_POST['status_id']);
+        $nint                   = sanitize_text_field($_POST['nint']);
+        $date                   = sanitize_text_field($_POST['date']);
+        $depto_unid             = sanitize_text_field($_POST['depto_unid']);
+        $nombres                = sanitize_text_field($_POST['nombres']);
+        $apellido_paterno       = sanitize_text_field($_POST['apellido_paterno']);
+        $apellido_materno       = sanitize_text_field($_POST['apellido_materno']);
+        $rut                    = sanitize_text_field($_POST['rut']);
+        $email                  = sanitize_text_field($_POST['email']);
+        $perm_admin             = sanitize_text_field($_POST['perm_admin']);
+        $fdo_legal              = sanitize_text_field($_POST['fdo_legal']);
+        $perm_parent            = sanitize_text_field($_POST['perm_parent']);
+        $dias                   = sanitize_text_field($_POST['dias']);
+        $desde                  = sanitize_text_field($_POST['desde']);
+        $hasta                  = sanitize_text_field($_POST['hasta ']);
+        $nombre_pdf             = sanitize_text_field($_POST['nombre_pdf']);
+        $dir_archivo_externo    = sanitize_text_field($_POST['dir_archivo_externo']);
+        $user_id                = sanitize_text_field($_POST['user_id']);
+        $status_id              = sanitize_text_field($_POST['status_id']);
+        $key_id                 = sanitize_text_field($_POST['key_id']);
         
 
         //https://stackoverflow.com/questions/33748430/wordpress-user-image-upload
-        $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
-
-        $upload_dir = wp_upload_dir(); 
         
+        //$upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
+        wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
- 
 
        $wpdb->insert(
             $tabla_aspirantes,
             array(
-                'user_id' => $user_id,
-                'key_id' => $key_id,
-                'status_id' => $status_id,
-                'nint' => $nint,
-                'date' => $date,
-                'depto_unid' => $depto_unid,
+                'user_id'               => $user_id,
+                'key_id'                => $key_id,
+                'status_id'             => $status_id,
+                'nint'                  => $nint,
+                'date'                  => $date,
+                'depto_unid'            => $depto_unid,
                 'nombres'               => $nombres,
                 'apellido_paterno'      => $apellido_paterno,
                 'apellido_materno'      => $apellido_materno,
@@ -111,6 +109,37 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             <label ><?php echo date('l jS \of F Y h:i:s A'); ?></label></br>
             <label ><?php echo date('Y_m_d'); ?></label></br>
             <label ><?php echo $doc_dir; ?></label></br>
+            
+            <?php 
+                
+                echo 'final path :' . $upload_dir['path'] = $upload_dir['path'] . date('d').'<br />';
+                $url;
+                $subdir;
+                $basedir;
+                $baseurl;
+                $upload;
+         
+
+                $upload_dir = wp_upload_dir(); 
+                
+                
+                $ruta = $upload_dir['basedir'];
+                $ruta = $ruta . '/proyecto';
+
+
+                 echo 'ruta ->' . $ruta . '<br />';
+                echo 'path ->' . $upload_dir['path'] . '/'.date('d').'<br />';
+                echo 'url ->' . $upload_dir['url'] . '<br />';
+                echo 'subdir ->' . $upload_dir['subdir'] . '<br />';
+                echo 'basedir ->' . $upload_dir['basedir'] . '<br />';
+                echo 'baseurl ->' . $upload_dir['baseurl'] . '<br />';
+                echo 'upload ->' . $upload_dir['upload'] . '<br />';
+                echo 'upload2 ->' . $upload . '<br />';
+                echo 'upload2 ->' . $upload['wp_custom_attachment']['name']. '<br />';
+                
+
+
+            ?> 
             <br> 
         <p> 
 
