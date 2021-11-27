@@ -74,6 +74,9 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
 
 
+        $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
+
+
 
         $current_user = wp_get_current_user();
         $upload_dir   = wp_upload_dir();
@@ -86,8 +89,14 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         }
 
 
+        rename($upload['file'] , $user_dirname.$_FILES['wp_custom_attachment']['name']);        
 
-
+        /*
+        $thefile = $upload['file'];
+        $upload_dir = wp_upload_dir();
+        $newfolder = $user_dirname;
+        move_uploaded_file($thefile, $newfolder);
+        */
 
 
 
@@ -142,12 +151,11 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             <?php 
                 
    
-               // $upload_dir = wp_upload_dir(); 
+               
                 
-                
+                /*                
                 $ruta = $upload_dir['basedir'];
                 $ruta = $ruta . '/proyecto';
-
 
                 echo 'ruta ->' . $ruta . '<br />';
                 echo 'path ->' . $upload_dir['path'] . '/'.date('d').'<br />';
@@ -158,8 +166,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 echo 'upload ->' . $upload_dir['upload'] . '<br />';
                 echo 'upload2 ->' . $upload . '<br />';
                 echo 'upload2 ->' . $upload['wp_custom_attachment']['name']. '<br />';
-                
-
+                */
+            echo 'upload2 ->' . $upload['file']. '<br />';
 
             ?> 
             <br> 
