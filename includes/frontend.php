@@ -7,8 +7,6 @@ add_shortcode('kfp_aspirante_form', 'Kfp_Aspirante_form');
 /*Inicio funcion para crear shortcode en la pagina de inicio */
 
 
-
-
 function Kfp_Aspirante_form() 
 {
 
