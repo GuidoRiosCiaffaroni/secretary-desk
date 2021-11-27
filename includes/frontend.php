@@ -60,6 +60,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
 
         //https://developer.wordpress.org/reference/functions/wp_upload_dir/
+        /*
         $current_user = wp_get_current_user();
         $upload_dir   = wp_upload_dir();
  
@@ -69,6 +70,25 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 wp_mkdir_p( $user_dirname );
             }
         }
+        */
+
+
+
+
+        $current_user = wp_get_current_user();
+        $upload_dir   = wp_upload_dir();
+ 
+        if ( isset( $current_user->user_login ) && ! empty( $upload_dir['basedir'] ) ) {
+            $user_dirname = $upload_dir['basedir'].'/'.date('Y').'/'.date('m').'/'.date('d').'/';
+            if ( ! file_exists( $user_dirname ) ) {
+                wp_mkdir_p( $user_dirname );
+            }
+        }
+
+
+
+
+
 
 
        $wpdb->insert(
@@ -121,15 +141,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             
             <?php 
                 
-                echo 'final path :' . $upload_dir['path'] = $upload_dir['path'] . date('d').'<br />';
-                $url;
-                $subdir;
-                $basedir;
-                $baseurl;
-                $upload;
-         
-
-                $upload_dir = wp_upload_dir(); 
+   
+               // $upload_dir = wp_upload_dir(); 
                 
                 
                 $ruta = $upload_dir['basedir'];
