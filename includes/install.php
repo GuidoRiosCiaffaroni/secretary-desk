@@ -28,6 +28,7 @@ function wpbc_install()
         status_id int(11) NOT NULL,
         key_id VARCHAR (50) NOT NULL,
         file VARCHAR (100) NOT NULL,
+        create_at datetime NOT NULL DEFAULT NOW(),
         PRIMARY KEY  (id)
     );";
 
@@ -61,6 +62,7 @@ function wpbc_install()
             status_id int(11) NOT NULL,
             key_id VARCHAR (50) NOT NULL,
             file VARCHAR (100) NOT NULL,
+            create_at datetime NOT NULL DEFAULT NOW(),
             PRIMARY KEY  (id)
         );";        
 

@@ -76,8 +76,6 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
         $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
 
-
-
         $current_user = wp_get_current_user();
         $upload_dir   = wp_upload_dir();
  
@@ -89,7 +87,10 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         }
 
 
-        rename($upload['file'] , $user_dirname.$_FILES['wp_custom_attachment']['name']);        
+
+        rename($upload['file'] , $user_dirname.time().'_'.$_FILES['wp_custom_attachment']['name']);  
+
+        $file = date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name'];      
 
         /*
         $thefile = $upload['file'];
@@ -125,7 +126,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 'user_id'               => $user_id,
                 'status_id'             => $status_id,
                 'key_id'                => $key_id,
-                'file'                  => $upload,
+                'file'                  => $file,
 
             )
         );
@@ -153,7 +154,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
    
                
                 
-                /*                
+                             
                 $ruta = $upload_dir['basedir'];
                 $ruta = $ruta . '/proyecto';
 
@@ -165,9 +166,9 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 echo 'baseurl ->' . $upload_dir['baseurl'] . '<br />';
                 echo 'upload ->' . $upload_dir['upload'] . '<br />';
                 echo 'upload2 ->' . $upload . '<br />';
-                echo 'upload2 ->' . $upload['wp_custom_attachment']['name']. '<br />';
-                */
-            echo 'upload2 ->' . $upload['file']. '<br />';
+                echo 'upload3 ->' . $upload['wp_custom_attachment']['name']. '<br />';
+                echo 'upload4 ->' . $upload['file']. '<br />';
+                echo 'upload5 ->' . date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name']. '<br />';
 
             ?> 
             <br> 
