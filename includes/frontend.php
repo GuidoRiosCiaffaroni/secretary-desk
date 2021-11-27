@@ -66,7 +66,11 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
 
         /* Inicio subir archivo */
-        $upload = wp_upload_bits($_FILES['wp_custom_attachment']['name'], null, @file_get_contents($_FILES['wp_custom_attachment']['tmp_name']));
+        $upload = wp_upload_bits(
+            $_FILES['wp_custom_attachment']['name'], 
+            null, 
+            @file_get_contents($_FILES['wp_custom_attachment']['tmp_name'])
+        );
 
         $current_user = wp_get_current_user();
         $upload_dir   = wp_upload_dir();
@@ -78,16 +82,11 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             }
         }
 
-
-
         rename($upload['file'] , $user_dirname.time().'_'.$_FILES['wp_custom_attachment']['name']);  
 
         $file = date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name']; 
 
         /* Fin subir archivo */     
-
-
-
 
         /*
         $thefile = $upload['file'];
@@ -95,8 +94,6 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         $newfolder = $user_dirname;
         move_uploaded_file($thefile, $newfolder);
         */
-
-
 
        $wpdb->insert(
             $tabla_aspirantes,
@@ -148,10 +145,6 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
             
             <?php 
                 
-   
-               
-                
-                             
                 $ruta = $upload_dir['basedir'];
                 $ruta = $ruta . '/proyecto';
 
@@ -255,7 +248,7 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         <p>
             <label for="perm_admin"><?php _e('Permiso Administrativo :', 'wpbc')?></label>
             <br>
-            <input id="perm_admin" name="rut" type="perm_admin">
+            <input id="perm_admin" name="perm_admin" type="perm_admin">
         </p>
              
         </div>
