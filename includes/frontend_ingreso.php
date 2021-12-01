@@ -1,13 +1,13 @@
 <?php
 
 /*Inicio crear shortcode en la pagina de inicio */
-add_shortcode('kfp_aspirante_form', 'Kfp_Aspirante_form');
+add_shortcode('kfp_ShotCondeIngreso_form', 'Kfp_Ingreso_form');
 /*Fin crear shortcode enla pagina de inicio*/ 
 
 /*Inicio funcion para crear shortcode en la pagina de inicio */
 
 
-function Kfp_Aspirante_form() 
+function Kfp_Ingreso_form() 
 {
 
 global $wpdb; // Este objeto global permite acceder a la base de datos de WP
@@ -148,17 +148,17 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
                 $ruta = $upload_dir['basedir'];
                 $ruta = $ruta . '/proyecto';
 
-                echo 'ruta ->' . $ruta . '<br />';
-                echo 'path ->' . $upload_dir['path'] . '/'.date('d').'<br />';
-                echo 'url ->' . $upload_dir['url'] . '<br />';
-                echo 'subdir ->' . $upload_dir['subdir'] . '<br />';
-                echo 'basedir ->' . $upload_dir['basedir'] . '<br />';
-                echo 'baseurl ->' . $upload_dir['baseurl'] . '<br />';
-                echo 'upload ->' . $upload_dir['upload'] . '<br />';
-                echo 'upload2 ->' . $upload . '<br />';
-                echo 'upload3 ->' . $upload['wp_custom_attachment']['name']. '<br />';
-                echo 'upload4 ->' . $upload['file']. '<br />';
-                echo 'upload5 ->' . date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name']. '<br />';
+                echo 'ruta      ->'   . $ruta                                 . '<br />';
+                echo 'path      ->'   . $upload_dir['path']                   . '/'.date('d').'<br />';
+                echo 'url       ->'    . $upload_dir['url']                   . '<br />';
+                echo 'subdir    ->' . $upload_dir['subdir']                   . '<br />';
+                echo 'basedir   ->'. $upload_dir['basedir']                   .  '<br />';
+                echo 'baseurl   ->'. $upload_dir['baseurl']                   . '<br />';
+                echo 'upload    ->' . $upload_dir['upload']                   . '<br />';
+                echo 'upload2   ->'. $upload                                  . '<br />';
+                echo 'upload3   ->'. $upload['wp_custom_attachment']['name']  . '<br />';
+                echo 'upload4   ->'. $upload['file']                          . '<br />';
+                echo 'upload5   ->'. date('Y').'/'.date('m').'/'.date('d').'/'.time().'_'.$_FILES['wp_custom_attachment']['name']. '<br />';
 
             ?> 
             <br> 
@@ -228,29 +228,26 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 <!-- --------------------------------------------------------------------------------------------------------------- -->    
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div>
-        <p>
-            <label for="rut"><?php _e('Rut :', 'wpbc')?></label>
-            <br>
-            <input id="rut" name="rut" type="text" >
-        </p>
-
-        <p>
-            <label for="email"><?php _e('email :', 'wpbc')?></label>
-            <br>
-            <input id="email" name="email" type="text" >
-        </p>
-             
+            <p>
+                <label for="rut"><?php _e('Rut :', 'wpbc')?></label>
+                <br>
+                <input id="rut" name="rut" type="text" >
+            </p>
+            <p>
+                <label for="email"><?php _e('e-mail :', 'wpbc')?></label>
+                <br>
+                <input id="email" name="email" type="text" >
+            </p> 
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 
 <!-- --------------------------------------------------------------------------------------------------------------- -->        
         <div>
-        <p>
-            <label for="perm_admin"><?php _e('Permiso Administrativo :', 'wpbc')?></label>
-            <br>
-            <input id="perm_admin" name="perm_admin" type="perm_admin">
-        </p>
-             
+            <p>
+                <label for="perm_admin"><?php _e('Permiso Administrativo :', 'wpbc')?></label>
+                <br>
+                <input id="perm_admin" name="perm_admin" type="perm_admin">
+            </p>
         </div>
 <!-- --------------------------------------------------------------------------------------------------------------- --> 
 

@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) or die( '¡Sin trampas!' );
 require plugin_dir_path( __FILE__ ) . 'includes/backend.php';
 
 /*Importa funciones administracion frontend*/
-require_once plugin_dir_path( __FILE__ ) . 'includes/frontend.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso.php';
 
 /*Importa funciones de instalacion*/
 require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
