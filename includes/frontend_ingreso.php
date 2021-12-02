@@ -21,6 +21,9 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         global $status_id;
         global $nint;
         global $date;
+
+
+
         /*
         global $depto_unid;
         global $nombres;
@@ -133,6 +136,8 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         move_uploaded_file($thefile, $newfolder);
         */
 
+
+/*
        $wpdb->insert(
             $tabla_aspirantes,
             array(
@@ -162,6 +167,42 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
 
             )
         );
+*/
+
+
+
+        
+         //$nint = 1;
+       
+
+      $wpdb->insert(
+            $tabla_aspirantes,
+            array(
+                'user_id'               => $user_id,
+                'key_id'                => $key_id,
+                'status_id'             => $status_id,
+                'nint'                  => $nint,
+                'date'                  => $date,
+            )
+        );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 

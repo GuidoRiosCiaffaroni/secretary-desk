@@ -9,6 +9,7 @@ function wpbc_ingreso_form()
         global $key_id;
         global $status_id;
         global $nint;
+        /*
         global $date;
         global $depto_unid;
         global $nombres;
@@ -27,6 +28,7 @@ function wpbc_ingreso_form()
         global $user_id;
         global $status_id;
         global $key_id;
+        */
 
 
     echo '<form action="'. get_the_permalink() .'" method="post" id="form_aspirante" class="cuestionario" enctype="multipart/form-data">';
