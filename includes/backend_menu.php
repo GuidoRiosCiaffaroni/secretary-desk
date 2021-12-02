@@ -1,6 +1,7 @@
 <?php
 function wpbc_admin_menu()
 {
+
     add_menu_page(
         __('Registro', 'wpbc'), 
         __('Registro', 'wpbc'), 
@@ -29,6 +30,7 @@ function wpbc_admin_menu()
     );
 
 }
+
 
 add_action(
     'admin_menu', 

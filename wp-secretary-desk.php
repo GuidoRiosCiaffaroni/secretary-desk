@@ -20,6 +20,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/backend.php';
 
 /*Importa funciones administracion frontend*/
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso_form.php';
+
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_buscar.php';
 
 
@@ -42,7 +44,7 @@ function wpbc_custom_admin_styles() {
     // Carga esta hoja de estilo para poner más bonito el formulario interno
     wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
 
-	}
+    }
 
     // Carga esta hoja de estilo para poner más bonito el formulario externo
     wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
