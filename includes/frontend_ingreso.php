@@ -13,16 +13,11 @@ function Kfp_Ingreso_form()
 global $wpdb; // Este objeto global permite acceder a la base de datos de WP
     // Si viene del formulario  graba en la base de datos
 
-
-
-
         global $user_id;
         global $key_id;
         global $status_id;
         global $nint;
         global $date;
-
-
 
         /*
         global $depto_unid;
@@ -43,7 +38,6 @@ global $wpdb; // Este objeto global permite acceder a la base de datos de WP
         global $status_id;
         global $key_id;
         */
-
         
         if (get_current_user_id() != NULL) 
         {

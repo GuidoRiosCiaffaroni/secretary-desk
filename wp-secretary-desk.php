@@ -21,7 +21,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/backend.php';
 /*Importa funciones administracion frontend*/
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso_form.php';
-
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_buscar.php';
 
 
@@ -30,6 +29,13 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
 
 /*Importa funciones de menu*/
 require_once(ABSPATH . 'wp-content/plugins/secretary-desk/includes/backend_menu.php');
+
+
+
+
+
+
+
 
 /*Funciones requeridas para subir archivos */
 /* https://wordpress.stackexchange.com/questions/251236/upload-images-to-custom-database-table-in-admin-backend */
