@@ -21,6 +21,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/backend.php';
 /*Importa funciones administracion frontend*/
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_ingreso_form.php';
+
 require_once plugin_dir_path( __FILE__ ) . 'includes/frontend_buscar.php';
 
 
@@ -29,13 +30,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/install.php';
 
 /*Importa funciones de menu*/
 require_once(ABSPATH . 'wp-content/plugins/secretary-desk/includes/backend_menu.php');
-
-
-
-
-
-
-
 
 /*Funciones requeridas para subir archivos */
 /* https://wordpress.stackexchange.com/questions/251236/upload-images-to-custom-database-table-in-admin-backend */
@@ -48,14 +42,38 @@ require_once(ABSPATH . 'wp-content/plugins/secretary-desk/includes/backend_menu.
 
 function wpbc_custom_admin_styles() {
     // Carga esta hoja de estilo para poner más bonito el formulario interno
-    wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
+    //wp_enqueue_style('custom-styles', plugins_url('/css/styles.css', __FILE__ ));
 
     }
+add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
+    // Carga esta hoja de estilo para poner más bonito el formulario externo
+    //wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
+
 
     // Carga esta hoja de estilo para poner más bonito el formulario externo
-    wp_enqueue_style('css_aspirante', plugins_url('/css/styles.css', __FILE__));
+    wp_enqueue_style('css_aspirante', plugins_url('/assets/dist/css/bootstrap.min.css', __FILE__));
 
-add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
+
+    wp_enqueue_style('css_aspirante', plugins_url('css/mdb.min.css', __FILE__));
+
+
+
+    // Archivos adicionales para boostrap
+    //https://kinsta.com/es/blog/wp-enqueue-scripts/
+    function my_plugin_assets() 
+    {
+        wp_register_style( 'custom-gallery', plugins_url( '/css/gallery.css' , __FILE__ ) );
+        wp_register_script( 'custom-gallery', plugins_url( '/js/gallery.js' , __FILE__ ) );
+
+        wp_enqueue_style( 'custom-gallery' );
+        wp_enqueue_script( 'custom-gallery' );
+    }
+    add_action( 'wp_enqueue_scripts', 'my_plugin_assets' );
+
+
+
+
+
 
 // traduce la pagina a otro idioma 
 /*

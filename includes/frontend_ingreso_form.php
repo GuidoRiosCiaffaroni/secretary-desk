@@ -66,9 +66,6 @@ function wpbc_ingreso_form()
     echo '-->' . $date . '</br>';
 
 
-
-
-
     echo '</br>'; 
     echo '<p>'; 
     echo '<input id="user_id" name="user_id" type="hidden" value="' . get_current_user_id() .'">';
@@ -80,7 +77,7 @@ function wpbc_ingreso_form()
 /* ***************************************************************************************************************************************************** */                
 /* ***************************************************************************************************************************************************** */
    
-    echo '<div>';    
+    echo '<div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">';    
     echo '  <p>';         
     echo '      <label for="nint">' . _e('N° INT:', 'wpbc') . '</label>';
     echo '      </br>';    
@@ -90,14 +87,13 @@ function wpbc_ingreso_form()
     echo '  <p>';
     echo '        <label for="date">' . _e('Fecha:', 'wpbc') . '</label>';
     echo '      <br>';
-    echo '      <input id="date" name="date" type="text">';
+    //echo '      <input id="date" name="date" type="text">';
+    echo '      <input placeholder="Select date" type="text" id="date" name="date" class="form-control">';
     echo '  </p>';
     echo '</div>';
     echo '<br>';         
 
 /* ***************************************************************************************************************************************************** */
-
-
 
 
 /* ***************************************************************************************************************************************************** */
