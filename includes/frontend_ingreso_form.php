@@ -97,12 +97,12 @@ echo '
 echo '
         <div class="container d-flex justify-content-center">
             <div class=\'col-md-5\'>
-                <div class="form-group">
+                <div class="form-floating mb-3">
                     <div>
                     <p>
-                        <label for="nint">' . _e('N° INT:', 'wpbc') . '</label>' .'
+                        <label for="floatingInput">' . _e('N° INT:', 'wpbc') . '</label>' .'
                         </br>    
-                        <input id="nint" name="nint" type="text">
+                        <input id="nint" name="nint" type="text" class="form-control" placeholder="xx-xx-xx-xx-xx" >
                     </p>
                     </div>
                 </div>
