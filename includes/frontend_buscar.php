@@ -39,6 +39,6 @@ function Kfp_Buscar_form()
 
   }
 // Ejecutamos nuestro funcion en WordPress
-add_action('wp', 'leer_wpdb');
+//add_action('wp', 'leer_wpdb');
 
 ?>

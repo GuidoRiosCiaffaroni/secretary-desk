@@ -60,6 +60,7 @@ add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
 
     // Archivos adicionales para boostrap
     //https://kinsta.com/es/blog/wp-enqueue-scripts/
+    /*
     function my_plugin_assets() 
     {
         wp_register_style( 'custom-gallery', plugins_url( '/css/gallery.css' , __FILE__ ) );
@@ -69,6 +70,25 @@ add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
         wp_enqueue_script( 'custom-gallery' );
     }
     add_action( 'wp_enqueue_scripts', 'my_plugin_assets' );
+    */
+
+    function my_plugin_assets() 
+    {
+        wp_register_style( 'bootstrap', plugins_url( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' , __FILE__ ) );
+  
+
+        wp_register_script( 'jquery', plugins_url( 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js' , __FILE__ ) );
+   
+        wp_enqueue_style( 'bootstrap' );
+  
+
+        wp_enqueue_script( 'jquery' );
+
+
+    }
+    add_action( 'wp_enqueue_scripts', 'my_plugin_assets' );
+
+
 
 
 
