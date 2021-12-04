@@ -72,6 +72,8 @@ add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
     add_action( 'wp_enqueue_scripts', 'my_plugin_assets' );
     */
 
+
+/*
     function my_plugin_assets() 
     {
         wp_register_style( 'bootstrap', plugins_url( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' , __FILE__ ) );
@@ -88,7 +90,7 @@ add_action('admin_enqueue_scripts', 'wpbc_custom_admin_styles');
     }
     add_action( 'wp_enqueue_scripts', 'my_plugin_assets' );
 
-
+*/
 
 
 

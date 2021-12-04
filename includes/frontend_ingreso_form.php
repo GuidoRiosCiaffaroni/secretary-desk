@@ -76,34 +76,6 @@ function wpbc_ingreso_form()
     echo '</div>';
 /* ***************************************************************************************************************************************************** */                
 /* ***************************************************************************************************************************************************** */
-   
-echo '
-        <div>
-        <p>
-            <label for="nint">' . _e('N° INT:', 'wpbc') . '</label>' .'
-            </br>    
-            <input id="nint" name="nint" type="text">
-        </p>
-        </div>
-';
-
-
-    //echo '<div>';   
-    //echo '  <p>';
-    //echo '        <label for="date">' . _e('Fecha:', 'wpbc') . '</label>';
-    //echo '      <br>';
-    //echo '      <input id="date" name="date" type="text">';
-    //echo '      <input placeholder="Select date" type="text" id="date" name="date" class="form-control">';
-    //echo '  </p>';
-    //echo '</div>';
-    //echo '<br>';
-
-
-
-
-
-
-
 echo '
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -114,7 +86,32 @@ echo '
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+';   
 
+
+
+
+
+
+
+echo '
+        <div class="container d-flex justify-content-center">
+            <div class=\'col-md-5\'>
+                <div class="form-group">
+                    <div>
+                    <p>
+                        <label for="nint">' . _e('N° INT:', 'wpbc') . '</label>' .'
+                        </br>    
+                        <input id="nint" name="nint" type="text">
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+';
+
+
+echo '
         <div class="container d-flex justify-content-center">
             <div class=\'col-md-5\'>
                 <div class="form-group">
@@ -128,7 +125,28 @@ echo '
                 </div>
             </div>
         </div>
+';
 
+
+
+
+/* ***************************************************************************************************************************************************** */
+
+
+/* ***************************************************************************************************************************************************** */
+
+    echo '         <div class="form-input">';
+    echo '              <input type="submit" value="Enviar">';
+    echo '          </div>';
+    echo '      </form>';
+
+/* ***************************************************************************************************************************************************** */
+
+
+
+
+
+echo '
         <script type=\'text/javascript\' src=\'https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js\'></script>
         <script type=\'text/javascript\' src=\'\'></script>
         <script type=\'text/javascript\' src=\'\'></script>
@@ -155,22 +173,6 @@ echo '
         </script>
 
 ';
-
-
-
-
-
-/* ***************************************************************************************************************************************************** */
-
-
-/* ***************************************************************************************************************************************************** */
-
-    echo '         <div class="form-input">';
-    echo '              <input type="submit" value="Enviar">';
-    echo '          </div>';
-    echo '      </form>';
-
-/* ***************************************************************************************************************************************************** */
 
 
 
