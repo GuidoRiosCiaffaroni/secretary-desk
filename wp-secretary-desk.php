@@ -2,7 +2,7 @@
 /**
 * Plugin Name: WP SecretaryDesk
 * Description: Wixan SecretaryDesk
-* Version:     2.1.3
+* Version:     2.1.5
 * Plugin URI: https://guidorios.cl/wp-basic-crud-plugin-wordpress/
 * Author:      Guido Rios Ciaffaroni
 * Author URI:  https://guidorios.cl/
