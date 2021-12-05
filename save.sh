@@ -10,5 +10,7 @@ echo "git add."
 git add .
 echo "git commit -m $date_stamp"
 git commit -m "$date_stamp"
+git branch -M main
+git remote add origin https://github.com/GuidoRiosCiaffaroni/secretary-desk.git
 echo "git push -u origin main"
 git push -u origin main
